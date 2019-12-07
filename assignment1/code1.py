@@ -21,4 +21,5 @@ def numbers_to_chars():
         op.append(d[lst[i]][count-1])
     s=s.join(op)
     print(s)
+
 numbers_to_chars()
