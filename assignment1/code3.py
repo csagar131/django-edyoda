@@ -1,3 +1,9 @@
+'''
+3.Given a dictionary that associates the names of states with a list of the names of cities that appear in it,write a program that creates a new dictionary that associates the name of a city with the list of states that it appears in.
+As an example, if the first dictionary is
+'''
+
+
 # input
 states = {'New Hampshire':['Concord', 'Hanover'],'Massachusetts':['Boston', 'Concord', 'Springfield'],
 'Illinois':['Chicago', 'Springfield', 'Peoria']}
