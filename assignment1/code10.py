@@ -29,8 +29,7 @@ def adj_sum_even(lst):
 
 print("Enter list of elements")
 lst = input().split(' ')
-for i in range(len(lst)):
-    lst[i] = int(lst[i])
+lst = [int(i) for i in lst]
 l=adj_sum_even(lst)
 print("list after removing elements",l)
 print(tuple(temp),str(len(temp))+" elements are removed")
