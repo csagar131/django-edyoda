@@ -47,9 +47,9 @@ def check_sentance(s):
         return "Sentance is correct"
 
 
-sentance = input("Enter sentance:")
-ans = check_sentance(sentance)
-print(ans)
+#sentance = input("Enter sentance:")
+#ans = check_sentance(sentance)
+#print(ans)
 
 
 

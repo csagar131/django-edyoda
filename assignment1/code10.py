@@ -6,6 +6,7 @@ Numbers = [1, 3, 5, 4, 2] Output = [1, 3, 5] Total elements removed 2 Elements t
 Function Name : adj_sum_even() Input : list Output : tuple(int,list)
 
 '''
+
 temp = []
 count = 0
 def adj_sum_even(lst):
@@ -23,13 +24,13 @@ def adj_sum_even(lst):
                     lst.remove(lst[i+1])
                     adj_sum_even(lst)
     except:
-        return lst
+        return (len(temp),temp,lst) 
 
 
 
-print("Enter list of elements")
-lst = input().split(' ')
-lst = [int(i) for i in lst]
-l=adj_sum_even(lst)
-print("list after removing elements",l)
-print(tuple(temp),str(len(temp))+" elements are removed")
+#print("Enter list of elements")
+#lst = input().split(' ')
+#lst = [int(i) for i in lst]
+#print(adj_sum_even(lst))
+#print("list after removing elements",l)
+#print(tuple(temp),str(len(temp))+" elements are removed")

@@ -17,6 +17,6 @@ def int_roman(num):
 
 
 
-n = int(input("enter integer:"))
-ans = int_roman(n)
-print(ans)
+#n = int(input("enter integer:"))
+#ans = int_roman(n)
+#print(ans)

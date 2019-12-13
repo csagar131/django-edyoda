@@ -10,15 +10,20 @@ Function Name : travel_sequence Input : dict Output : dict
 
 '''
 
-d={"Chennai":"Banglore","Bombay":"Delhi","Goa":"Chennai","Delhi":"Goa"}
-op = dict()
+#d={"Chennai":"Banglore","Bombay":"Delhi","Goa":"Chennai","Delhi":"Goa"}
 
-lst = d.keys()
-start=sorted(list(lst))[0]
+def travel_sequence(d):
+    op = dict()
 
-first = op.setdefault(start,d[start])
-second = op.setdefault(first,d[first])
-third = op.setdefault(second,d[second])
-fourth = op.setdefault(third,d[third])
-print("input:",d)
-print("output sequence:",op)
+    lst = d.keys()
+    start=sorted(list(lst))[0]
+
+    first = op.setdefault(start,d[start])
+    second = op.setdefault(first,d[first])
+    third = op.setdefault(second,d[second])
+    fourth = op.setdefault(third,d[third])
+    return op
+
+
+#print("input:",d)
+#print("output sequence:",travel_sequence(d))

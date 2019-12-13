@@ -34,6 +34,6 @@ def check_parentheses(s):
     return ans
 
 
-k = input("Enter string:")
-ans=check_parentheses(k)
-print(ans)
+#k = input("Enter string:")
+#ans=check_parentheses(k)
+#print(ans)

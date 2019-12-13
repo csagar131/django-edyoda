@@ -16,10 +16,11 @@ Function Name : numbers_to_chars() Input : Integer number sequence Output : Str
 '''
 
 
-d={'2':['a','b','c'],'3':['d','e','f'],'4':['g','h','i'],'5':['j','k','l'],'6':['m','n','o'],'7':['p','q','r','s'],'8':['t','u','v'],'9':['w','x','y','z']}
-op = []
+#d={'2':['a','b','c'],'3':['d','e','f'],'4':['g','h','i'],'5':['j','k','l'],'6':['m','n','o'],'7':['p','q','r','s'],'8':['t','u','v'],'9':['w','x','y','z']}
+
 
 def numbers_to_chars():
+    op = []
     s =''
     n = int(input("enter your number:"))
     lst = list(str(n))
@@ -38,6 +39,6 @@ def numbers_to_chars():
                 break
         op.append(d[lst[i]][count-1])
     s=s.join(op)
-    print(s)
+    return s
 
-numbers_to_chars()
+#print(numbers_to_chars())

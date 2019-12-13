@@ -30,10 +30,10 @@ def greatest_sub_array(lst,k):
             continue  
         
     
-print("Enter array")
-lst = input().split()
-lst = [int(i) for i in lst]
-k = int(input("Enter integer k:"))
+#print("Enter array")
+#lst = input().split()
+#lst = [int(i) for i in lst]
+#k = int(input("Enter integer k:"))
 
-anslst=greatest_sub_array(lst,k)
-print(anslst)
+#anslst=greatest_sub_array(lst,k)
+#print(anslst)

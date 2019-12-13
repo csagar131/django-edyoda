@@ -17,9 +17,8 @@ def check_password_strength(p):
     if len(lst) < 8:
         ans.append(['the password must be at least 8 characters in length'])
         reason = tuple(ans)
-        print(reason)
-        return
-    if len(lst) >= 8:
+        return reason
+    else:
         for i in ['!','@','#','$','&']:
             if i in lst:
                 if len(ans) > 1:
@@ -47,11 +46,11 @@ def check_password_strength(p):
             ans.append(dg[0])
         
     if len(ans) > 1:
-        print(tuple(ans))
+        return tuple(ans)
     else:
-        print("Password is Strong")
+        return "Password is Strong"
            
 
 
-p=input("Enter password:")
-check_password_strength(p)
+#p=input("Enter password:")
+#print(check_password_strength(p))
