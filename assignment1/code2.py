@@ -13,17 +13,22 @@ Function Name : travel_sequence Input : dict Output : dict
 #d={"Chennai":"Banglore","Bombay":"Delhi","Goa":"Chennai","Delhi":"Goa"}
 
 def travel_sequence(d):
+    startlist = d.keys()
+    destlist = d.values()
     op = dict()
+    
 
-    lst = d.keys()
-    start=sorted(list(lst))[0]
-
-    first = op.setdefault(start,d[start])
-    second = op.setdefault(first,d[first])
-    third = op.setdefault(second,d[second])
-    fourth = op.setdefault(third,d[third])
+    for city in startlist:
+        if city not in destlist:
+            start = city
+    
+    i = 0
+    while i < len(startlist):
+        op.setdefault(start,d[start])
+        start = d[start]
+        i+=1
     return op
 
 
-#print("input:",d)
-#print("output sequence:",travel_sequence(d))
+# print("input:",d)
+# print("output sequence:",travel_sequence(d))
