@@ -10,12 +10,12 @@ class Book:
         self.total_count = 0
         self.book_item = []
         
-    def addBookItem(self,isbn,rack):
-        b = BookItem(self,isbn,rack)
+    def addBookItem(self,isbn,rack,barcode):
+        b = BookItem(self,isbn,rack,barcode)
         self.book_item.append(b)
         self.total_count +=1
         
     def printBook(self):
         print (self.name,self.author)
         for book_item in self.book_item:
-            print (book_item.isbn)
+            print (book_item.isbn,book_item.book.name)

@@ -15,14 +15,24 @@ class Catalog:
         return b
     
     #Only available to admin
-    def addBookItem(self,book,isbn,rack):
-        book.addBookItem(isbn, rack)
+    def addBookItem(self,book,isbn,rack,barcodeNo):
+        book.addBookItem(isbn, rack, barcodeNo)
         
     def searchByName(self,name):
-        pass
+        for book in self.books:  
+            if name == book.name:  #return true if book requested is available
+                return True
+        return False
     
+    # will give list of all the books from perticualr author
     def searchByAuthor(self,author):
-        pass
+        books_by_author = []
+        for book in self.books:
+            if author == book.author:      
+                books_by_author.append(book)
+        return books_by_author
+
+                
     
         
     def displayAllBooks(self):

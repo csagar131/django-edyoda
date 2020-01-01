@@ -22,6 +22,15 @@ class Member(User):
     #assume name is unique
     def returnBook(self,name):
         pass
+
+    #for paying fine
+    def payFine(self):
+        pass
+    
+    #for searching all the available book present in catalog
+    def searchCatalog(self):
+        pass
+        
         
         
 class Librarian(User):
