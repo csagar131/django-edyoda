@@ -24,17 +24,15 @@ class Catalog:
                 return True
         return False
     
-    # will give list of all the books from perticualr author
+    # will give list of all the books from particualr author
     def searchByAuthor(self,author):
         books_by_author = []
         for book in self.books:
             if author == book.author:      
-                books_by_author.append(book)
+                books_by_author.append(book.name)
         return books_by_author
 
-                
-    
-        
+                 
     def displayAllBooks(self):
         print ('Different Book Count',self.different_book_count)
         c = 0

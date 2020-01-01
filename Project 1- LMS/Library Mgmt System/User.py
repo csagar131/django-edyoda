@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from Catalog import Catalog
+
 class User:
     def __init__(self, name, location, age, aadhar_id):
         self.name = name

@@ -3,11 +3,11 @@ from Book import Book
 from Catalog import Catalog
 from User import Member, Librarian
 
-b1 = Book('Shoe Dog','Phil Knight', '2015',312)
-b1.addBookItem('123hg','H1B2','#1234')
-b1.addBookItem('124hg','H1B3','#4433')
+# b1 = Book('Shoe Dog','Phil Knight', '2015',312)
+# b1.addBookItem('123hg','H1B2','#1234')
+# b1.addBookItem('124hg','H1B3','#4433')
 
-b1.printBook()
+# b1.printBook()
 
 catalog = Catalog()
 
@@ -18,6 +18,10 @@ catalog.addBookItem(b, '125hg','H1B5',"#6833")
 
 b = catalog.addBook('Moonwalking with Einstien','J Foer', '2017',318)
 catalog.addBookItem(b, '463hg','K1B2',"#2343")
+
+b = catalog.addBook('The Harry Potter',"Jack daniel","2001",500)
+b = catalog.addBook('The Age of altron',"Jack daniel","2002",534)
+b = catalog.addBook('The Marvel king',"Jack daniel","2003",556)
 
 catalog.displayAllBooks()
 
@@ -31,3 +35,7 @@ catalog.displayAllBooks()
 
 #print(catalog.searchByName("Shoe Dog"))
 print("---------------------------------------------------")
+
+
+l = catalog.searchByAuthor('Jack daniel')
+print(l)
