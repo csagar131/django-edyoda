@@ -44,18 +44,18 @@ class Librarian(User):
         return self.name + self.location + self.emp_id
     
     # to access the catalog features by the Librarian/Admin
-    def accesCurrentCatalog(self):   
-        catalog = Catalog()
+    def accessCurrentCatalog(self):   
+        catalog = Catalog().accessCurrentCatalog()
         return catalog
 
     # to add the book in the catalog by the librarian
     def addBook(self,name,author,publish_date,pages):
-        catalog = self.accesCurrentCatalog()
+        catalog = self.accessCurrentCatalog()
         catalog.addBook(name,author,publish_date,pages)
 
 
     def displayDifferentBooks(self):
-        catalog = self.accesCurrentCatalog()
+        catalog = self.accessCurrentCatalog()
         catalog.displayDifferentBooks()
 
     # to add the bookItem of perticular book 

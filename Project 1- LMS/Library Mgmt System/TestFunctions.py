@@ -49,7 +49,11 @@ print("---------------------------------------------------")
 #catalog.addBook("2 states","Chetan Bhagat",'2010',340)
 librarian.addBook("2 states","Chetan Bhagat",'2010',340)
 
-print(librarian.__dict__)
-catalog.displayDifferentBooks()
+# print(librarian.__dict__)
+# catalog.displayDifferentBooks()
 librarian.displayDifferentBooks()
-#catalog.displayAllBookItems()
+
+
+
+# print(catalog.accessCurrentCatalog())
+# print(librarian.accessCurrentCatalog())

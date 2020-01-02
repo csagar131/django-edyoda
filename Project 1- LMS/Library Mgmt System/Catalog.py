@@ -3,10 +3,15 @@ from Book import Book
 #First Book is file & second is Class
 
 class Catalog:
+    
     def __init__(self):
         self.different_book_count = 0
         self.books = []
         
+        
+    def accessCurrentCatalog(self):
+        return self
+
     #Only available to admin
     def addBook(self,name,author,publish_date,pages):
         b = Book(name,author,publish_date,pages)
