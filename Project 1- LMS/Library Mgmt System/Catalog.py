@@ -32,12 +32,15 @@ class Catalog:
                 books_by_author.append(book.name)
         return books_by_author
 
-                 
-    def displayAllBooks(self):
+    # to dislay total no of different book
+    def displayDifferentBooks(self):
         print ('Different Book Count',self.different_book_count)
+
+                 
+    def displayAllBookItems(self):
+        self.displayDifferentBooks()
         c = 0
         for book in self.books:
             c += book.total_count
             book.printBook()
-        
         print ('Total Book Count',c)

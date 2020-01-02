@@ -43,7 +43,23 @@ class Librarian(User):
     def __repr__(self):
         return self.name + self.location + self.emp_id
     
+    # to access the catalog features by the Librarian/Admin
+    def accesCurrentCatalog(self):   
+        catalog = Catalog()
+        return catalog
+
+    # to add the book in the catalog by the librarian
     def addBook(self,name,author,publish_date,pages):
+        catalog = self.accesCurrentCatalog()
+        catalog.addBook(name,author,publish_date,pages)
+
+
+    def displayDifferentBooks(self):
+        catalog = self.accesCurrentCatalog()
+        catalog.displayDifferentBooks()
+
+    # to add the bookItem of perticular book 
+    def addBookItem(self,isbn,rack,barcode):
         pass
     
     def removeBook(self,name):
