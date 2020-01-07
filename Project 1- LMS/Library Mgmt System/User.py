@@ -7,6 +7,7 @@ class User:
         self.location = location
         self.age = age
         self.aadhar_id = aadhar_id
+        self.catalog = Catalog()  #creating  a catalog object
         
 
 class Member(User):
@@ -36,31 +37,33 @@ class Member(User):
         
         
 class Librarian(User):
+    
     def __init__(self,name, location, age, aadhar_id,emp_id):
         super().__init__(name, location, age, aadhar_id)
         self.emp_id = emp_id
         
+    #string representation of the object
     def __repr__(self):
         return self.name + self.location + self.emp_id
     
-    # to access the catalog features by the Librarian/Admin
-    def accessCurrentCatalog(self):   
-        catalog = Catalog().accessCurrentCatalog()
-        return catalog
+    
 
     # to add the book in the catalog by the librarian
     def addBook(self,name,author,publish_date,pages):
-        catalog = self.accessCurrentCatalog()
-        catalog.addBook(name,author,publish_date,pages)
+        #only librarian can add the book to catalog
+        # returning the book object and storing in self.book for later use
+        self.book = self.catalog.addBook(name,author,publish_date,pages)  # returning the book object
+                                                                          
 
-
+    # to display No. of different Books
     def displayDifferentBooks(self):
-        catalog = self.accessCurrentCatalog()
-        catalog.displayDifferentBooks()
+        self.catalog.displayDifferentBooks()
 
     # to add the bookItem of perticular book 
-    def addBookItem(self,isbn,rack,barcode):
-        pass
+    def addBookItem(self,book,isbn,rack,barcode):
+        #we are calling the already defined function of catalog class
+        #only librarian can add the bookItem to catalog
+        self.catalog.addBookItem(self.book,isbn,rack,barcode)  
     
     def removeBook(self,name):
         pass

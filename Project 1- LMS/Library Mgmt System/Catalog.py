@@ -2,15 +2,13 @@
 from Book import Book
 #First Book is file & second is Class
 
+#Catalog class maintains all the information about the book and bookItems of Book
 class Catalog:
     
     def __init__(self):
         self.different_book_count = 0
         self.books = []
         
-        
-    def accessCurrentCatalog(self):
-        return self
 
     #Only available to admin
     def addBook(self,name,author,publish_date,pages):
@@ -41,7 +39,7 @@ class Catalog:
     def displayDifferentBooks(self):
         print ('Different Book Count',self.different_book_count)
 
-                 
+    #display the bookItem details of book
     def displayAllBookItems(self):
         self.displayDifferentBooks()
         c = 0
