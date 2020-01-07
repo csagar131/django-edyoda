@@ -53,6 +53,7 @@ class Librarian(User):
         #only librarian can add the book to catalog
         # returning the book object and storing in self.book for later use
         self.book = self.catalog.addBook(name,author,publish_date,pages)  # returning the book object
+        return self.book         # returning book object
                                                                           
 
     # to display No. of different Books
@@ -65,8 +66,28 @@ class Librarian(User):
         #only librarian can add the bookItem to catalog
         self.catalog.addBookItem(self.book,isbn,rack,barcode)  
     
+    #display all the book item with different book
+    def displayAllBookItems(self):
+        self.catalog.displayAllBookItems()
+
+    #for removing the book so its bookItem will also deleted
     def removeBook(self,name):
-        pass
+        for book in self.catalog.books:
+            if book.name == name:
+                self.catalog.books.remove(book)  #remove book object from list of books
+                self.catalog.different_book_count-=1  # reduce the different book count
+                self.removeBookItem(book)   #removing corresponding bookItem
+
+    
+    def removeBookItem(self,book):
+        self.bookItemslen = 0   
+        for bookobj in self.catalog.books:
+            if bookobj == book:
+                self.bookItemslen = len(book.book_item) #determining total bookitems of book
+                book.book_item.clear() #clearing the bookItem list of perticular list
+        book.total_count-=self.bookItemslen
+        
+
     
     
         

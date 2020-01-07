@@ -41,9 +41,9 @@ class Catalog:
 
     #display the bookItem details of book
     def displayAllBookItems(self):
-        self.displayDifferentBooks()
+        #self.displayDifferentBooks()
         c = 0
         for book in self.books:
             c += book.total_count
             book.printBook()
-        print ('Total Book Count',c)
+        print ('Total BookItem Count',c)

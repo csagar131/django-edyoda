@@ -3,28 +3,28 @@ from Book import Book
 from Catalog import Catalog
 from User import Member, Librarian
 
-# b1 = Book('Shoe Dog','Phil Knight', '2015',312)
-# b1.addBookItem('123hg','H1B2','#1234')
-# b1.addBookItem('124hg','H1B3','#4433')
+# # b1 = Book('Shoe Dog','Phil Knight', '2015',312)
+# # b1.addBookItem('123hg','H1B2','#1234')
+# # b1.addBookItem('124hg','H1B3','#4433')
 
-# b1.printBook()
+# # b1.printBook()
 
-catalog = Catalog()
+# catalog = Catalog()
 
-b = catalog.addBook('Shoe Dog','Phil Knight', '2015',312)
-# catalog.addBookItem(b, '123hg','H1B2',"#2222")
-# catalog.addBookItem(b, '124hg','H1B4',"#6858")
-# catalog.addBookItem(b, '125hg','H1B5',"#6833")
+# b = catalog.addBook('Shoe Dog','Phil Knight', '2015',312)
+# # catalog.addBookItem(b, '123hg','H1B2',"#2222")
+# # catalog.addBookItem(b, '124hg','H1B4',"#6858")
+# # catalog.addBookItem(b, '125hg','H1B5',"#6833")
 
-b = catalog.addBook('Moonwalking with Einstien','J Foer', '2017',318)
-#catalog.addBookItem(b, '463hg','K1B2',"#2343")
+# b = catalog.addBook('Moonwalking with Einstien','J Foer', '2017',318)
+# #catalog.addBookItem(b, '463hg','K1B2',"#2343")
 
-b = catalog.addBook('The Harry Potter',"Jack daniel","2001",500)
-b = catalog.addBook('The Age of altron',"Jack daniel","2002",534)
-b = catalog.addBook('The Marvel king',"Jack daniel","2003",556)
+# b = catalog.addBook('The Harry Potter',"Jack daniel","2001",500)
+# b = catalog.addBook('The Age of altron',"Jack daniel","2002",534)
+# b = catalog.addBook('The Marvel king',"Jack daniel","2003",556)
 
 
-catalog.displayDifferentBooks()
+# catalog.displayDifferentBooks()
 #catalog.displayAllBookItems()
 
 # m1 = Member("Vish","Bangalore",23,'asljlkj22','std1233')
@@ -38,6 +38,7 @@ librarian = Librarian("Awantik","Bangalore",34,'asljlkj22','zeke101')
 #print(catalog.searchByName("Shoe Dog"))
 print("---------------------------------------------------")
 print("From library class persepective")
+print("---------------------------------------------------")
 
 # l = catalog.searchByAuthor('Jack daniel')
 # print(l)
@@ -51,29 +52,39 @@ print("From library class persepective")
 
 
 #catalog.addBook("2 states","Chetan Bhagat",'2010',340)
-b = librarian.addBook("2 states","Chetan Bhagat",'2010',340)
-
+two_states = librarian.addBook("2 states","Chetan Bhagat",'2010',340)
+librarian.addBookItem(two_states, '554hg','S1B2',"#2287")
+librarian.addBookItem(two_states, '555hg','S1B4',"#2284")
 # print(librarian.__dict__)
 # catalog.displayDifferentBooks()
 
-b = librarian.addBook('Shoe Dog','Phil Knight', '2015',312)
+shoe_dog = librarian.addBook('Shoe Dog','Phil Knight', '2015',312)
 
-librarian.addBookItem(b, '123hg','H1B2',"#2222")
-librarian.addBookItem(b, '124hg','H1B4',"#6858")
-librarian.addBookItem(b, '125hg','H1B5',"#6833")
+librarian.addBookItem(shoe_dog, '123hg','H1B2',"#2222")
+librarian.addBookItem(shoe_dog, '124hg','H1B4',"#6858")
+librarian.addBookItem(shoe_dog, '125hg','H1B5',"#6833")
 
-b = librarian.addBook('Moonwalking with Einstien','J Foer', '2017',318)
-librarian.addBookItem(b, '463hg','K1B2',"#2343")
+moon_walking = librarian.addBook('Moonwalking with Einstien','J Foer', '2017',318)
+librarian.addBookItem(moon_walking, '463hg','K1B2',"#2343")
 
-b = librarian.addBook('The Harry Potter',"Jack daniel","2001",500)
-b = librarian.addBook('The Age of altron',"Jack daniel","2002",534)
-b = librarian.addBook('The Marvel king',"Jack daniel","2003",556)
+harry_potter = librarian.addBook('The Harry Potter',"Jack daniel","2001",500)
+age_of_altron = librarian.addBook('The Age of altron',"Jack daniel","2002",534)
+marvel_king = librarian.addBook('The Marvel king',"Jack daniel","2003",556)
 
 
 
 librarian.displayDifferentBooks()
+librarian.displayAllBookItems()
 
 
+librarian.removeBook("2 states")
+
+# print("------------------------------@@")
+# librarian.removeBookItem(two_states)
+# print("------------------------------@@")
+
+librarian.displayDifferentBooks()
+librarian.displayAllBookItems()
 
 
 
