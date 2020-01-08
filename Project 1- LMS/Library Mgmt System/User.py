@@ -18,6 +18,8 @@ class Member(User):
     def __repr__(self):
         return self.name + ' ' + self.location + ' ' + self.student_id
     
+
+
     #assume name is unique
     def issueBook(self,name,days=10):
         pass
@@ -30,9 +32,24 @@ class Member(User):
     def payFine(self):
         pass
     
-    #for searching all the available book present in catalog
-    def searchCatalog(self):
-        pass
+    #for searching all the available book present in catalog by name
+    def searchCatalogByName(self,name):
+        result = self.catalog.searchByName(name)
+        if result:
+            print("book of name {} is present".format(name))
+        else:
+            print("book of name {} is not present".format(name))
+        
+    #for searching all the available book present in catalog by author
+    def searchCatalogByAuthor(self,author):
+        result = self.catalog.searchByAuthor(author)
+        if result:
+            print("all the books by author {} is/are {}".format(author,result))
+        else:
+            print("book of author {} not present now".format(author))
+
+
+
         
         
         

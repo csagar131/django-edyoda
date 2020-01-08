@@ -72,21 +72,30 @@ age_of_altron = librarian.addBook('The Age of altron',"Jack daniel","2002",534)
 marvel_king = librarian.addBook('The Marvel king',"Jack daniel","2003",556)
 
 
-
+print("displaying different books")
 librarian.displayDifferentBooks()
+print("displaying the bookItems")
 librarian.displayAllBookItems()
 
 
-librarian.removeBook("2 states")
+#librarian.removeBook("2 states")
 
 # print("------------------------------@@")
 # librarian.removeBookItem(two_states)
 # print("------------------------------@@")
 
-librarian.displayDifferentBooks()
-librarian.displayAllBookItems()
+# librarian.displayDifferentBooks()
+# librarian.displayAllBookItems()
+
+print("-----------------")
+print("member operations")
+print("-----------------")
+
+member = Member('sagar','jaipur',21,344564,33033)
+
+member.__dict__['catalog'] =librarian.__dict__.get('catalog')
 
 
+member.searchCatalogByName('2 states')
 
-# print(catalog.accessCurrentCatalog())
-# print(librarian.accessCurrentCatalog())
+member.searchCatalogByAuthor('Chetan Bhagat')
