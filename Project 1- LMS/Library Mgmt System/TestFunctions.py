@@ -96,6 +96,8 @@ member = Member('sagar','jaipur',21,344564,33033)
 member.__dict__['catalog'] =librarian.__dict__.get('catalog')
 
 
-member.searchCatalogByName('2 states')
+# member.searchCatalogByName('2 states')
 
-member.searchCatalogByAuthor('Chetan Bhagat')
+# member.searchCatalogByAuthor('Chetan Bhagat')
+
+member.issueBook('2 states')
