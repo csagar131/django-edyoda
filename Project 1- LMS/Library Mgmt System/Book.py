@@ -7,8 +7,8 @@ class Book:
         self.author = author
         self.publish_date = publish_date
         self.pages = pages
-        self.total_count = 0
-        self.book_item = []
+        self.total_count = 0 # total count of all the bookItem in inventory
+        self.book_item = []  #bookItem of perticular book
         
     def addBookItem(self,isbn,rack,barcode):
         b = BookItem(self,isbn,rack,barcode)

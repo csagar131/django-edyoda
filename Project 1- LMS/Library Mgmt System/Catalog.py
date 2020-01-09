@@ -8,6 +8,8 @@ class Catalog:
     def __init__(self):
         self.different_book_count = 0
         self.books = []
+        self.inventory = dict() 
+        #inventory to store the complete details of book and its bookItems 
         
 
     #Only available to admin
@@ -15,11 +17,13 @@ class Catalog:
         b = Book(name,author,publish_date,pages)
         self.different_book_count += 1
         self.books.append(b)
+        self.inventory.setdefault(b.name,0)  #adding book to inventory initially zero
         return b
     
     #Only available to admin
     def addBookItem(self,book,isbn,rack,barcodeNo):
         book.addBookItem(isbn, rack, barcodeNo)
+        self.inventory[book.name]+= 1  #increase bookItem count when bookItem added
         
     def searchByName(self,name):
         for book in self.books:  

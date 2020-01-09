@@ -100,4 +100,12 @@ member.__dict__['catalog'] =librarian.__dict__.get('catalog')
 
 # member.searchCatalogByAuthor('Chetan Bhagat')
 
-member.issueBook('2 states')
+print(member.showInventory())
+
+
+member.issueBook('2 states','#2287')
+#member.issueBook('2 states','#2284')
+#member.issueBook('2 states','#2281')
+
+print(member.showInventory())
+print(member.bookIssued)

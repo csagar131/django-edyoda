@@ -21,32 +21,48 @@ class Member(User):
         return self.name + ' ' + self.location + ' ' + self.student_id
     
 
-
     #assume name is unique
-    def issueBook(self,name,days=10):
+    def issueBook(self,name,barcode,days=10):
+        transaction = []
         self.days = days
         for book in self.catalog.books:
-            if name == book.name:
-                if book.book_item > 0 and self.issueLimit > 0:
-                    pass
-
-
-
-
+            if book.name == name:  
+                try:
+                    if self.catalog.inventory.get(name) > 0 and self.issueLimit > 0:
+                        for bookitem in book.book_item:
+                            if bookitem.barcodeNo == barcode:
+                                transaction.extend([book.name,barcode])
+                                book.book_item.remove(bookitem)
+                                book.total_count-= 1
+                                self.catalog.inventory[name]-= 1
+                                self.issueLimit-= 1
+                                self.bookIssued.append(transaction)
+                                if self.catalog.inventory[name] == 0:
+                                    self.catalog.different_book_count-= 1
+                                    self.catalog.inventory.pop(name)               
+                except:
+                    print("bookItem of book {} not present".format(book.name))
         
+            
+
+    #show the whole collection of book and bookItem
+    def showInventory(self):
+        return self.catalog.inventory
 
     
     #assume name is unique
     def returnBook(self,name):
         pass
 
+
     #for paying fine
     def payFine(self):
         pass
     
+
     #for searching all the available book present in catalog by name
     def searchCatalogByName(self,name):
-        result = self.catalog.searchByName(name)
+        result = self.catalog.searchByName(name) #if book of required name found
         if result:
             print("book of name {} is present".format(name))
             return True
@@ -54,17 +70,14 @@ class Member(User):
             print("book of name {} is not present".format(name))
             return False
         
+
     #for searching all the available book present in catalog by author
     def searchCatalogByAuthor(self,author):
         result = self.catalog.searchByAuthor(author)
-        if result:
+        if result:  #if book of required author found
             print("all the books by author {} is/are {}".format(author,result))
         else:
-            print("book of author {} not present now".format(author))
-
-
-
-        
+            print("book of author {} not present now".format(author))  
         
         
 class Librarian(User):
@@ -76,7 +89,6 @@ class Librarian(User):
     #string representation of the object
     def __repr__(self):
         return self.name + self.location + self.emp_id
-    
     
 
     # to add the book in the catalog by the librarian
@@ -91,15 +103,18 @@ class Librarian(User):
     def displayDifferentBooks(self):
         self.catalog.displayDifferentBooks()
 
+
     # to add the bookItem of perticular book 
     def addBookItem(self,book,isbn,rack,barcode):
         #we are calling the already defined function of catalog class
         #only librarian can add the bookItem to catalog
         self.catalog.addBookItem(self.book,isbn,rack,barcode)  
     
+
     #display all the book item with different book
     def displayAllBookItems(self):
         self.catalog.displayAllBookItems()
+
 
     #for removing the book so its bookItem will also deleted
     def removeBook(self,name):
