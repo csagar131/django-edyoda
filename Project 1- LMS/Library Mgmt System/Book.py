@@ -10,12 +10,16 @@ class Book:
         self.total_count = 0 # total count of all the bookItem in inventory
         self.book_item = []  #bookItem of perticular book
         
+    def __repr__(self):
+        return self.name
+    
     def addBookItem(self,isbn,rack,barcode):
         b = BookItem(self,isbn,rack,barcode)
         self.book_item.append(b)
         self.total_count +=1
         
     def printBook(self):
-        print (self.name,self.author)
+        print(self.name,self.author)
         for book_item in self.book_item:
-            print (book_item.isbn,book_item.book.name)
+            print(book_item.isbn,book_item.barcodeNo,book_item.book.name)
+        print("------------------------------------------------")

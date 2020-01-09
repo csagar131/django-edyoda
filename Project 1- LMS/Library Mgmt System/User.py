@@ -23,26 +23,31 @@ class Member(User):
 
     #assume name is unique
     def issueBook(self,name,barcode,days=10):
-        transaction = []
+        transaction = []  #store the current transaction details
         self.days = days
-        for book in self.catalog.books:
-            if book.name == name:  
+        for book in self.catalog.books:  # search in the books objects
+            if book.name == name:  # if requested book present
                 try:
+                    #check count of booItem in inventory and   check the member issue limit
                     if self.catalog.inventory.get(name) > 0 and self.issueLimit > 0:
-                        for bookitem in book.book_item:
-                            if bookitem.barcodeNo == barcode:
-                                transaction.extend([book.name,barcode])
-                                book.book_item.remove(bookitem)
-                                book.total_count-= 1
-                                self.catalog.inventory[name]-= 1
-                                self.issueLimit-= 1
-                                self.bookIssued.append(transaction)
-                                if self.catalog.inventory[name] == 0:
-                                    self.catalog.different_book_count-= 1
-                                    self.catalog.inventory.pop(name)               
+                        for bookitem in book.book_item: # search for bookItem of requested barcode
+                            if bookitem.barcodeNo == barcode:  # if requested barcode present
+                                book.book_item.remove(bookitem) #remove bookItem of that barcode
+                                book.total_count-= 1  #decrease total count of bookItems
+                                self.catalog.inventory[name]-= 1  #decrease the count of that book in inventory
+                                self.issueLimit-= 1  # reduce the book issue limit of member
+                                self.bookIssued.append(transaction) #associate the details of transaction with member
+                                # check if inventory becomes empty
+                                # if self.catalog.inventory[name] == 0:
+                                #     self.catalog.different_book_count-= 1 # reduce the book count 
+                                #     self.catalog.inventory.pop(name) 
+                                #     self.catalog.books.remove(book)
+                                transaction.extend([book.name,barcode])  #make a transaction 
+                        break             
                 except:
                     print("bookItem of book {} not present".format(book.name))
-        
+        else:
+            print("book of name {} not present in inventory".format(name))
             
 
     #show the whole collection of book and bookItem
@@ -118,20 +123,21 @@ class Librarian(User):
 
     #for removing the book so its bookItem will also deleted
     def removeBook(self,name):
-        for book in self.catalog.books:
-            if book.name == name:
-                self.catalog.books.remove(book)  #remove book object from list of books
-                self.catalog.different_book_count-=1  # reduce the different book count
-                self.removeBookItem(book)   #removing corresponding bookItem
-
-    
-    def removeBookItem(self,book):
-        self.bookItemslen = 0   
+        self.bookItemslen = 0
         for bookobj in self.catalog.books:
-            if bookobj == book:
-                self.bookItemslen = len(book.book_item) #determining total bookitems of book
-                book.book_item.clear() #clearing the bookItem list of perticular list
-        book.total_count-=self.bookItemslen
+            if bookobj.name == name:
+                self.catalog.books.remove(bookobj)  #remove book object from list of books
+                self.catalog.different_book_count-=1  # reduce the different book count
+                bookobj.book_item.clear() #clearing the bookItem list of perticular list
+                self.bookItemslen = len(bookobj.book_item) #determining total bookitems of book
+                bookobj.total_count-=self.bookItemslen #reducing total book count
+                self.catalog.inventory.pop(bookobj.name)
+    
+    #to remove the bookItem based on the barcodeNo from inventory
+    def removeBookItem(self,book,barcodeNo):
+        pass
+           
+        
         
 
     

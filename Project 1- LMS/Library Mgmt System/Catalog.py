@@ -41,7 +41,8 @@ class Catalog:
 
     # to dislay total no of different book
     def displayDifferentBooks(self):
-        print ('Different Book Count',self.different_book_count)
+        print('Different Book Count',self.different_book_count)
+        print(self.inventory)
 
     #display the bookItem details of book
     def displayAllBookItems(self):
