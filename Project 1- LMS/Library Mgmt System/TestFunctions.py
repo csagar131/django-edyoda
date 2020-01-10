@@ -9,7 +9,7 @@ from User import Member, Librarian
 
 # # b1.printBook()
 
-# catalog = Catalog()
+catalog = Catalog()
 
 # b = catalog.addBook('Shoe Dog','Phil Knight', '2015',312)
 # # catalog.addBookItem(b, '123hg','H1B2',"#2222")
@@ -49,24 +49,24 @@ librarian = Librarian("Awantik","Bangalore",34,'asljlkj22','zeke101')
 
 
 #catalog.addBook("2 states","Chetan Bhagat",'2010',340)
-two_states = librarian.addBook("2 states","Chetan Bhagat",'2010',340)
-librarian.addBookItem(two_states, '554hg','S1B2',"#2287")
-librarian.addBookItem(two_states, '555hg','S1B4',"#2284")
+two_states = librarian.addBook(catalog,"2 states","Chetan Bhagat",'2010',340)
+librarian.addBookItem(catalog,two_states, '554hg','S1B2',"#2287")
+librarian.addBookItem(catalog,two_states, '555hg','S1B4',"#2284")
 # print(librarian.__dict__)
 # catalog.displayDifferentBooks()
 
-shoe_dog = librarian.addBook('Shoe Dog','Phil Knight', '2015',312)
+shoe_dog = librarian.addBook(catalog,'Shoe Dog','Phil Knight', '2015',312)
 
-librarian.addBookItem(shoe_dog, '123hg','H1B2',"#2222")
-librarian.addBookItem(shoe_dog, '124hg','H1B4',"#6858")
-librarian.addBookItem(shoe_dog, '125hg','H1B5',"#6833")
+librarian.addBookItem(catalog,shoe_dog, '123hg','H1B2',"#2222")
+librarian.addBookItem(catalog,shoe_dog, '124hg','H1B4',"#6858")
+librarian.addBookItem(catalog,shoe_dog, '125hg','H1B5',"#6833")
 
-moon_walking = librarian.addBook('Moonwalking with Einstien','J Foer', '2017',318)
-librarian.addBookItem(moon_walking, '463hg','K1B2',"#2343")
+moon_walking = librarian.addBook(catalog,'Moonwalking with Einstien','J Foer', '2017',318)
+librarian.addBookItem(catalog,moon_walking, '463hg','K1B2',"#2343")
 
-harry_potter = librarian.addBook('The Harry Potter',"Jack daniel","2001",500)
-age_of_altron = librarian.addBook('The Age of altron',"Jack daniel","2002",534)
-marvel_king = librarian.addBook('The Marvel king',"Jack daniel","2003",556)
+harry_potter = librarian.addBook(catalog,'The Harry Potter',"Jack daniel","2001",500)
+age_of_altron = librarian.addBook(catalog,'The Age of altron',"Jack daniel","2002",534)
+marvel_king = librarian.addBook(catalog,'The Marvel king',"Jack daniel","2003",556)
 
 
 # print("displaying different books")
@@ -77,9 +77,7 @@ marvel_king = librarian.addBook('The Marvel king',"Jack daniel","2003",556)
 
 #librarian.removeBook("2 states")
 
-# print("------------------------------@@")
-# librarian.removeBookItem(two_states)
-# print("------------------------------@@")
+# librarian.removeBookItem(catalog,'2 states','#2287')
 
 # librarian.displayDifferentBooks()
 # librarian.displayAllBookItems()
@@ -90,7 +88,6 @@ print("##################")
 
 member = Member('sagar','jaipur',21,344564,33033)
 
-member.__dict__['catalog'] =librarian.__dict__.get('catalog')
 
 # librarian.displayDifferentBooks()
 
@@ -98,20 +95,19 @@ member.__dict__['catalog'] =librarian.__dict__.get('catalog')
 
 # member.searchCatalogByAuthor('Chetan Bhagat')
 
-print(member.showInventory())
+print(member.showInventory(catalog))
 
-member.issueBook('2 states','#2287')
-member.issueBook('2 states','#2284')
+# member.issueBook(catalog,'2 states','#2287')
+# member.issueBook(catalog,'2 states','#2284')
 
 # #member.issueBook('2 states','#2281')
+# print(member.bookIssued)
 
-print(member.showInventory())
-print(member.bookIssued)
+#member.issueBook(catalog,'abc',"ddss")
 
-#librarian.removeBook('2 states')
 
-librarian.displayAllBookItems()
-librarian.displayDifferentBooks()
+librarian.displayAllBookItems(catalog)
+librarian.displayDifferentBooks(catalog)
 
 
 
