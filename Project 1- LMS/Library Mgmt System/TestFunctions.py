@@ -97,17 +97,25 @@ member = Member('sagar','jaipur',21,344564,33033)
 
 print(member.showInventory(catalog))
 
-# member.issueBook(catalog,'2 states','#2287')
-# member.issueBook(catalog,'2 states','#2284')
+returndays = member.issueBook(catalog,'2 states','#2287')
+#member.issueBook(catalog,'2 states','#2284')
+
+print(member.bookIssued)
 
 # #member.issueBook('2 states','#2281')
 # print(member.bookIssued)
 
 #member.issueBook(catalog,'abc',"ddss")
 
+librarian.displayAllBookItems(catalog)
+librarian.displayDifferentBooks(catalog)
+
+member.returnBook(catalog,'2 states',10,returndays)
 
 librarian.displayAllBookItems(catalog)
 librarian.displayDifferentBooks(catalog)
+
+
 
 
 

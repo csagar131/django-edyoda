@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Catalog import Catalog
+from datetime import date,datetime,timedelta
 
 class User:
     def __init__(self, name, location, age, aadhar_id):
@@ -35,14 +36,16 @@ class Member(User):
                                 book.book_item.remove(bookitem) #remove bookItem of that barcode
                                 book.total_count-= 1  #decrease total count of bookItems
                                 catalog.inventory[name]-= 1  #decrease the count of that book in inventory
-                                issueLimit-= 1  # reduce the book issue limit of member
-                                bookIssued.append(transaction) #associate the details of transaction with member
+                                self.issueLimit-= 1  # reduce the book issue limit of member
+                                transaction.extend([(datetime.now()),book.name,barcode])  #make a transaction
+                                self.bookIssued.append(transaction) #associate the details of transaction with member
+                                rinfo = self.returnInfo()
                                 # check if inventory becomes empty
                                 # if self.catalog.inventory[name] == 0:
                                 #     self.catalog.different_book_count-= 1 # reduce the book count 
                                 #     self.catalog.inventory.pop(name) 
                                 #     self.catalog.books.remove(book)
-                                transaction.extend([book.name,barcode])  #make a transaction 
+                                return rinfo
                         break             
                 except:
                     print("bookItem of book {} not present".format(book.name))
@@ -50,14 +53,23 @@ class Member(User):
             print("book of name {} not present in inventory".format(name))
             
 
+    # issue book return inforamation
+    def returnInfo(self):
+        currenttime  = datetime.now()
+        returntime   = currenttime + timedelta(days=20)
+        info = returntime - currenttime
+        info = int(str(info).split(" ")[0])
+        return info
+
+
     #show the whole collection of book and bookItem
     def showInventory(self,catalog):
         return catalog.inventory
 
     
     #assume name is unique
-    def returnBook(self,catalog,name):
-        pass
+    def returnBook(self,catalog,name,issuedays,returndays):
+        print(name,issuedays,returndays)
 
 
     #for paying fine
