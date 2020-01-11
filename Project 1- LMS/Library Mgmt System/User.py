@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from Catalog import Catalog
 from datetime import date,datetime,timedelta
 
@@ -96,7 +97,7 @@ class Member(User):
         if noOfDays <= 10:  # now we are checking only for 10 days
             return 0
         else:
-            fineAmt = (noOfDays-10) * 2
+            fineAmt = (noOfDays-10) * 2 # if greater than 10 days count from 11th day
             return fineAmt
 
     
@@ -167,6 +168,7 @@ class Librarian(User):
         self.bookItemslen = len(bookobj.book_item) #determining total bookitems of book
         bookobj.total_count-=self.bookItemslen #reducing total book count
         catalog.inventory.pop(bookobj.name)
+    
     
     #to remove the bookItem based on the barcodeNo from inventory
     def removeBookItem(self,catalog,name,barcodeNo):
