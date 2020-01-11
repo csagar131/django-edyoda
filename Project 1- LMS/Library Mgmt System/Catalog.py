@@ -28,7 +28,7 @@ class Catalog:
     def searchByName(self,name):
         for book in self.books:  
             if name == book.name:  #return true if book requested is available
-                return True
+                return book
         return False
     
     # will give list of all the books from particualr author

@@ -27,7 +27,7 @@ class Member(User):
     def issueBook(self,catalog,name,barcode,days=10):
         transaction = []  #store the current transaction details
         self.days = days
-        book = [bk for bk in catalog.books if bk.name == name][0] # search in the books objects  # if requested book present
+        book = catalog.searchByName(name) # search in the books objects  # if requested book present
         try:
             #check count of booItem in inventory and   check the member issue limit
             if catalog.inventory.get(name) > 0 and self.issueLimit > 0:
@@ -70,26 +70,18 @@ class Member(User):
         bkitem = [bitem for bitem in self.bookIssued if rinfo[-2] in bitem]
         if bkitem:  #check the book is that whick is issued
             #[(datetime.now()),book.name,bookitem.isbn,bookitem.rack,barcode,returndays]
-            for book in catalog.books:
-                if book.name == name:
-                    #book = [bk for bk in catalog.books if bk.name == rinfo[1]][0]
-                    catalog.addBookItem(book,rinfo[2],rinfo[3],rinfo[4])
-                    catalog.inventory[book.name]+= 1  #increase the count of that book in inventory
-                    self.issueLimit+= 1  # update the book issue limit of member
-                    self.bookIssued.remove(rinfo)  # remove that transaction from member account
-                    fineAmt = self.payFine(returndays-issuedays)
-                    print("Return successful")
-                    print("please pay the fine of {} to librarian".format(fineAmt))
-                    return
-                else:
-                    continue
-            else:
-                print("Sorry no book of this bookItem found in libarary")
-
+            book = catalog.searchByName(name)
+            #book = [bk for bk in catalog.books if bk.name == rinfo[1]][0]
+            catalog.addBookItem(book,rinfo[2],rinfo[3],rinfo[4])
+            catalog.inventory[book.name]+= 1  #increase the count of that book in inventory
+            self.issueLimit+= 1  # update the book issue limit of member
+            self.bookIssued.remove(rinfo)  # remove that transaction from member account
+            fineAmt = self.payFine(returndays-issuedays)
+            print("Return successful")
+            print("please pay the fine of {} to librarian".format(fineAmt))
         else:
             print("please bring associated with this library")
-
-
+        
 
     #for paying fine
     def payFine(self,noOfDays):
@@ -101,7 +93,6 @@ class Member(User):
             return fineAmt
 
     
-
     #for searching all the available book present in catalog by name
     def searchCatalogByName(self,catalog,name):
         result = catalog.searchByName(name) #if book of required name found
@@ -161,7 +152,7 @@ class Librarian(User):
     #for removing the book so its bookItem will also deleted
     def removeBook(self,catalog,name):
         self.bookItemslen = 0
-        bookobj = [bookobj for bookobj in catalog.books if bookobj.name == name][0]
+        bookobj = catalog.searchByName(name)
         catalog.books.remove(bookobj)  #remove book object from list of books
         catalog.different_book_count-=1  # reduce the different book count
         bookobj.book_item.clear() #clearing the bookItem list of perticular list
@@ -169,10 +160,10 @@ class Librarian(User):
         bookobj.total_count-=self.bookItemslen #reducing total book count
         catalog.inventory.pop(bookobj.name)
     
-    
+
     #to remove the bookItem based on the barcodeNo from inventory
     def removeBookItem(self,catalog,name,barcodeNo):
-        books = [book for book in catalog.books if book.name == name][0]
+        books = catalog.searchByName(name)
         for bookItem in books.book_item:
             if bookItem.barcodeNo == barcodeNo:
                 books.book_item.remove(bookItem)
