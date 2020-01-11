@@ -8,7 +8,7 @@ class Book:
         self.publish_date = publish_date
         self.pages = pages
         self.total_count = 0 # total count of all the bookItem in inventory
-        self.book_item = []  #bookItem of perticular book
+        self.book_item = []  #bookItems of perticular book
         
     def __repr__(self):
         return self.name

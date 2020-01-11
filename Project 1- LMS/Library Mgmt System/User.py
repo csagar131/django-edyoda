@@ -26,40 +26,35 @@ class Member(User):
     def issueBook(self,catalog,name,barcode,days=10):
         transaction = []  #store the current transaction details
         self.days = days
-        for book in catalog.books:  # search in the books objects
-            if book.name == name:  # if requested book present
-                try:
-                    #check count of booItem in inventory and   check the member issue limit
-                    if catalog.inventory.get(name) > 0 and self.issueLimit > 0:
-                        for bookitem in book.book_item: # search for bookItem of requested barcode
-                            if bookitem.barcodeNo == barcode:  # if requested barcode present
-                                book.book_item.remove(bookitem) #remove bookItem of that barcode
-                                book.total_count-= 1  #decrease total count of bookItems
-                                catalog.inventory[name]-= 1  #decrease the count of that book in inventory
-                                self.issueLimit-= 1  # reduce the book issue limit of member
-                                transaction.extend([(datetime.now()),book.name,barcode])  #make a transaction
-                                self.bookIssued.append(transaction) #associate the details of transaction with member
-                                rinfo = self.returnInfo()
-                                # check if inventory becomes empty
-                                # if self.catalog.inventory[name] == 0:
-                                #     self.catalog.different_book_count-= 1 # reduce the book count 
-                                #     self.catalog.inventory.pop(name) 
-                                #     self.catalog.books.remove(book)
-                                return rinfo
-                        break             
-                except:
-                    print("bookItem of book {} not present".format(book.name))
-        else:
-            print("book of name {} not present in inventory".format(name))
+        book = [bk for bk in catalog.books if bk.name == name][0] # search in the books objects  # if requested book present
+        try:
+            #check count of booItem in inventory and   check the member issue limit
+            if catalog.inventory.get(name) > 0 and self.issueLimit > 0:
+                for bookitem in book.book_item: # search for bookItem of requested barcode
+                    if bookitem.barcodeNo == barcode:  # if requested barcode present
+                        book.book_item.remove(bookitem) #remove bookItem of that barcode
+                        book.total_count-= 1  #decrease total count of bookItems
+                        catalog.inventory[name]-= 1  #decrease the count of that book in inventory
+                        self.issueLimit-= 1  # reduce the book issue limit of member
+                        print('you can issue {} more books'.format(self.issueLimit))
+                        returndays = self.returnDays(days) #will return total days from issue date to return date
+                        transaction.extend([(datetime.now()),book.name,bookitem.isbn,bookitem.rack,barcode,returndays])  #make a transaction
+                        self.bookIssued.append(transaction) #associate the details of transaction with member
+                        return transaction             
+        except:
+            print("bookItem of book {} not present".format(book.name))
+            return
+        
+        print("book of name {} not present in inventory".format(name))
             
 
     # issue book return inforamation
-    def returnInfo(self):
+    def returnDays(self,days):
         currenttime  = datetime.now()
-        returntime   = currenttime + timedelta(days=20)
+        returntime   = currenttime + timedelta(days)  
         info = returntime - currenttime
         info = int(str(info).split(" ")[0])
-        return info
+        return info #total days from issue date to return date
 
 
     #show the whole collection of book and bookItem
@@ -68,13 +63,42 @@ class Member(User):
 
     
     #assume name is unique
-    def returnBook(self,catalog,name,issuedays,returndays):
-        print(name,issuedays,returndays)
+    def returnBook(self,catalog,name,rinfo,issuedays,returndays):
+        #print(name,issuedays,returndays)
+        fineAmt = 0
+        bkitem = [bitem for bitem in self.bookIssued if rinfo[-2] in bitem]
+        if bkitem:  #check the book is that whick is issued
+            #[(datetime.now()),book.name,bookitem.isbn,bookitem.rack,barcode,returndays]
+            for book in catalog.books:
+                if book.name == name:
+                    #book = [bk for bk in catalog.books if bk.name == rinfo[1]][0]
+                    catalog.addBookItem(book,rinfo[2],rinfo[3],rinfo[4])
+                    catalog.inventory[book.name]+= 1  #increase the count of that book in inventory
+                    self.issueLimit+= 1  # update the book issue limit of member
+                    self.bookIssued.remove(rinfo)  # remove that transaction from member account
+                    fineAmt = self.payFine(returndays-issuedays)
+                    print("Return successful")
+                    print("please pay the fine of {} to librarian".format(fineAmt))
+                    return
+                else:
+                    continue
+            else:
+                print("Sorry no book of this bookItem found in libarary")
+
+        else:
+            print("please bring associated with this library")
+
 
 
     #for paying fine
-    def payFine(self):
-        pass
+    def payFine(self,noOfDays):
+        fineAmt = 0
+        if noOfDays <= 10:  # now we are checking only for 10 days
+            return 0
+        else:
+            fineAmt = (noOfDays-10) * 2
+            return fineAmt
+
     
 
     #for searching all the available book present in catalog by name

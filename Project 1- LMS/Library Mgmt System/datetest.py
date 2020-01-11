@@ -28,3 +28,10 @@ print(info)
 # k =  str(datetime.now() + timedelta(days)).split(" ")[0]
 # print(k)
 # print(type(k))
+
+
+# check if inventory becomes empty
+# if self.catalog.inventory[name] == 0:
+#     self.catalog.different_book_count-= 1 # reduce the book count 
+#     self.catalog.inventory.pop(name) 
+#     self.catalog.books.remove(book)
