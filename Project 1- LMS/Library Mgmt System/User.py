@@ -20,7 +20,7 @@ class Member(User):
         self.bookIssued = []
         
     def __repr__(self):
-        return self.name + ' ' + self.location + ' ' + self.student_id
+        return self.name + ' ' + self.location + ' ' + str(self.student_id)
     
 
     #assume name is unique
@@ -121,7 +121,7 @@ class Librarian(User):
         
     #string representation of the object
     def __repr__(self):
-        return self.name + self.location + self.emp_id
+        return self.name +' '+ self.location +' '+ self.emp_id
     
 
     # to add the book in the catalog by the librarian
