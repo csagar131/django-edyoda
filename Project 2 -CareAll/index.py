@@ -8,15 +8,15 @@ def welcome():
     print("Please select\n1. Login as Elder \n2. Login as Younger\n3. Register\n4. View all youngers who are taking care\n5. View who is taking care of older couple\n6. Exit")
     task = int(input())
     if task==1:
-        mobile = input("Welcome Elder\nEnter Your Email: ")
+        email = input("Welcome Elder\nEnter Your Email: ")
         password = input("Enter Your Password: ")
-        user = ElderProfile(mobile, password)
+        user = ElderProfile(email, password)
         user.log_in()
     
     elif task==2:
-        mobile = input("Welcome younger\nEnter Your Email: ")
+        email = input("Welcome younger\nEnter Your Email: ")
         password = input("Enter Your Password: ")
-        user = YoungerProfile(mobile, password)
+        user = YoungerProfile(email, password)
         user.log_in()
     
     elif task==3:

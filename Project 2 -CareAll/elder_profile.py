@@ -13,9 +13,10 @@ class ElderProfile():
 
     def sign_up(self, user_id):
         self.user_id = user_id
-        sql = "INSERT INTO elders(FK_user_ID) VALUES(%s)"
+        sql = "INSERT INTO elders (FK_user_ID) VALUES (%s)"
         val = (self.user_id)
         mycursor.execute(sql, val)
+        print('inserted')
         mydb.commit()
         sql = f'SELECT PK_elder_id FROM elders WHERE FK_user_id={self.user_id}'
         mycursor.execute(sql)

@@ -46,7 +46,7 @@ class User:
             elder.sign_up(self.get_user_id())
 
     def get_user_id(self):
-        sql = f'SELECT PK_user_id FROM users WHERE email = "{self.email}" '
+        sql = f'SELECT PK_user_id FROM users WHERE email = "{self.email}"'
         mycursor.execute(sql)
         user_id = mycursor.fetchone()
         return user_id
