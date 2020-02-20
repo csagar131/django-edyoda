@@ -41,7 +41,7 @@ class User:
         if self.role=="younger":
             younger = YoungerProfile(self.email, self.password)
             younger.sign_up(self.get_user_id())
-        elif self.role=="younger":
+        elif self.role=="elder":
             elder = ElderProfile(self.email, self.password)
             elder.sign_up(self.get_user_id())
 

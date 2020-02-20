@@ -3,8 +3,8 @@ import mysql.connector
 # conneting mysql
 mydb = mysql.connector.connect(
     host="localhost",
-    user="root",
-    passwd="password",
+    user="sagar",
+    passwd="11121991",
     use_pure=True,
 )
 cursor = mydb.cursor()
@@ -15,8 +15,8 @@ cursor.execute("CREATE DATABASE IF NOT EXISTS caregiving")
 # getting database
 mydb = mysql.connector.connect(
   host="localhost",
-  user="root",
-  passwd="password",
+  user="sagar",
+  passwd="11121991",
   use_pure=True,
   database="caregiving"
 )

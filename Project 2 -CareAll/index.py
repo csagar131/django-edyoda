@@ -3,7 +3,7 @@ from profile import User
 from younger_profile import YoungerProfile
 from elder_profile import ElderProfile
 
-# welcome note and giving oprion to login or register
+# welcome note and giving option to login or register
 def welcome():
     print("Please select\n1. Login as Elder \n2. Login as Younger\n3. Register\n4. View all youngers who are taking care\n5. View who is taking care of older couple\n6. Exit")
     task = int(input())

@@ -9,20 +9,19 @@ class YoungerProfile():
         user_id = mycursor.fetchone()
         self.user_id = user_id[0]
         self.younger_name = user_id[1]
+
+    def sign_up(self, user_id):
+        self.user_id = user_id
+        sql = "INSERT INTO youngers (FK_user_ID) VALUES (%s)"
+        val = (self.user_id)
+        mycursor.execute(sql, val)
+        print("inserted")
+        mydb.commit()
+
         sql = f'SELECT PK_younger_id FROM youngers WHERE FK_user_id={self.user_id}'
         mycursor.execute(sql)
         younger_id = mycursor.fetchone()
         self.younger_id=younger_id[0]
-        sql = f'SELECT FK_younger_id from elders where FK_younger_id = {self.younger_id}'
-        mycursor.execute(sql)
-        self.youngerCount = mycursor.fetchall()
-
-    def sign_up(self, user_id):
-        sql = "INSERT INTO youngers (FK_user_ID) VALUES (%s)"
-        val = (user_id)
-        mycursor.execute(sql, val)
-        print("inserted")
-        mydb.commit()
 
     def log_in(self):
         #retrieving passwords for registered mobile no from both table
