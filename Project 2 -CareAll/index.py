@@ -45,7 +45,7 @@ def welcome():
     elif task==4:
         pass
 
-    # enter elder's mobile number of email boh are unique here and display their take care name
+    # enter elder's mobile number of email both are unique here and display their take care name
     elif task==5:
         pass
 

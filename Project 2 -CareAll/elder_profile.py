@@ -8,6 +8,7 @@ class ElderProfile():
         mycursor.execute(sql)
         user_id = mycursor.fetchone()
         self.user_id = user_id[0]
+        self.elder_id = self.user_id
         self.elder_name = user_id[1]
         
 
@@ -39,12 +40,12 @@ class ElderProfile():
             import index
 
     def dashboard_elder(self):
-        sql = f'SELECT available FROM elders where PK_elder_id = {self.elder_id}'
+        sql = f'SELECT available FROM elders where fK_user_id = {self.elder_id}'
         mycursor.execute(sql)
         user_info = mycursor.fetchone()
         if user_info[0]==1:
-            print("You are currently Available to take care of.\n1.Make Unavailable\n2.Fund\n3.Request\n4.Take Care Name\n5.Give review and rating for a younger\n6.LogOut")
-            choice = int(input())
+            print(f"Hello {self.elder_name},You are currently Available to take care of.\n1.Make Unavailable\n2.Fund\n3.Request\n4.Take Care Name\n5.Give review and rating for a younger\n6.LogOut")
+            choice = int(input(":"))
             if choice==1:
                 self.change_status()
                 self.dashboard_elder()
@@ -74,7 +75,20 @@ class ElderProfile():
 
     # elder can change their status from available to unavailable and vice-versa
     def change_status(self):
-        pass
+        #elder who is logged in can change their respective avialabiliy
+        id = self.get_elder_id(self.elder_name)
+        sql = f'select pk_elder_id,available from elders where fk_user_id={id}'
+        mycursor.execute(sql)
+        result = mycursor.fetchone()
+        if result[1]:
+            sql = f'update elders set available={0} where pk_elder_id={result[0]}'
+            mycursor.execute(sql)
+            mydb.commit()
+        else:
+            sql = f'update elders set available={1} where pk_elder_id={result[0]}'
+            mycursor.execute(sql)
+            mydb.commit()
+
 
     # elder can see requests and accept whome they trus only 1 request can be accepted by elder      
     def show_request(self):
@@ -90,3 +104,19 @@ class ElderProfile():
 
     def log_out(self):
         import index
+
+    
+    def get_elder_id(self,elder_name):
+        elder_name = elder_name.split(" ")
+        fname =  elder_name[0]
+        lname = elder_name[1]   #fetching first and last name because two person may have same fname
+        sql = 'select pk_user_id,name from users'
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        elderid = 0
+        for info in result:
+            fullname = info[1].split(" ")
+            if fname.lower() == fullname[0].lower() and lname.lower() == fullname[1].lower():
+                elderid = info[0]
+
+        return elderid

@@ -64,12 +64,17 @@ class YoungerProfile():
     def review(self):
         elder_name = input("Enter name whome do you want to rate and review") #taking name of elder
         elderid = self.get_elder_id(elder_name) #getting elderid corresponds to elder_name
-        print(elderid)
-        
-        
-
-
-
+        review = input("Please give your review in text:")
+        rating = float(input("your rating"))
+        #younger_name = self.younger_name
+        sql = 'insert into reviews(fk_user_id,review,rating,review_by) values(%s,%s,%s,%s)'
+        val = (elderid,review,rating,self.younger_name)
+        mycursor.execute(sql,val)
+        mydb.commit()
+        #updating the elders data after the review
+        sql = f'update elders set rating={rating} where fk_user_id={elderid}' 
+        mycursor.execute(sql)
+        mydb.commit()
 
     def log_out(self):
         import index
@@ -85,7 +90,7 @@ class YoungerProfile():
         elderid = 0
         for info in result:
             fullname = info[1].split(" ")
-            if fname == fullname[0] and lname == fullname[1]:
+            if fname.lower() == fullname[0].lower() and lname.lower() == fullname[1].lower():
                 elderid = info[0]
 
         return elderid
