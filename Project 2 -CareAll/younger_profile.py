@@ -62,7 +62,30 @@ class YoungerProfile():
 
     # younger can give review and rating to elders
     def review(self):
-        pass
+        elder_name = input("Enter name whome do you want to rate and review") #taking name of elder
+        elderid = self.get_elder_id(elder_name) #getting elderid corresponds to elder_name
+        print(elderid)
+        
+        
+
+
+
 
     def log_out(self):
         import index
+
+
+    def get_elder_id(self,elder_name):
+        elder_name = elder_name.split(" ")
+        fname =  elder_name[0]
+        lname = elder_name[1]   #fetching first and last name because two person may have same fname
+        sql = 'select pk_user_id,name from users'
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        elderid = 0
+        for info in result:
+            fullname = info[1].split(" ")
+            if fname == fullname[0] and lname == fullname[1]:
+                elderid = info[0]
+
+        return elderid
