@@ -1,0 +1,13 @@
+.top-menu{
+    text-align: center;
+    /*display: inline-block;*/
+    border-bottom: 2px;
+    box-shadow: 2px 3px skyblue;
+    margin: 0px;
+    background-color: azure;
+    }
+.menu-item{
+    margin: 40px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
