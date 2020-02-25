@@ -42,6 +42,19 @@
                 padding:11px;
                 margin-right:36px;
             }
+            .btn-favorite{
+                border:none;
+                background-color: #FDAC25;
+                padding:0px;
+                color:white;
+                border-bottom-right-radius: 8px;
+                border-bottom-left-radius: 8px;
+            }
+            .heart-icon-wrapper{
+                display: block;
+                background-color: whitesmoke;  
+                width:98px;
+            }
            
         </style>
     </head>
@@ -51,7 +64,13 @@
         </div>
         <div class="brown-bg">
             <button class="btn-addtocart"><span class="icon-wrapper"><i class="fas fa-shopping-cart cart-icon"></i></span>Add To Cart</button>
+            <button class="btn-favorite">
+                <span class="heart-icon-wrapper"><i class="fas fa-heart" style="color:#EAA020"></i></span>
+                <span style="display: inline-block; padding:5px 20px;">Favorite</span>
+            </button>
         </div>
+        
+
 
     </body>
 </html>
