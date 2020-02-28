@@ -6,10 +6,16 @@
     height: 30px;
     display: flex;
     flex-direction: row;
-    
-    
-    
+    align-items: center;
+    justify-content: left;    
 }
+
+#edyoda-stories-logo{
+    margin-left: 50px;
+    margin-top: 15px;
+}
+
+
 body{
     margin:0px;
 }
@@ -59,6 +65,13 @@ h3{
     .heading{
     font-family: 'Raleway',sans-serif ;
     margin:4.2px 0px 0px;
+    font-size: 20.8px;
+    font-weight: 600;
+    
+    }
+
+    .author{
+        font-weight: 500;
     }
 
 
@@ -169,5 +182,6 @@ h3{
         cursor: pointer;
     }
     .explore-categories{
-        align-items: center;
+        margin-left: 80px;
+
     }
