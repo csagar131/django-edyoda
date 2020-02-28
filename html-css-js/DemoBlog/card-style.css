@@ -54,6 +54,7 @@ h3{
     margin:0px 5.59px 16px;
     background-color: white;
     }
+    
     .texted{
     padding:1px 24px 11.2px 24px;
     }
@@ -186,6 +187,14 @@ h3{
         cursor: pointer;
     }
     .explore-categories{
-        margin-left: 80px;
+        margin-left: 72px;
+        font-size: 14px;
+        font-family: 'Open Sans',sans-serif ;
+        letter-spacing: .9px;
+        font-weight: 500;
 
+    }
+
+    a:visited{
+        color:black;
     }
