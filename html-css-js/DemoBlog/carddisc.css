@@ -123,6 +123,12 @@ body{
         letter-spacing: .2px;
     }
 
+    .cl{
+        color:#0096FF;
+        font-style: bold;
+        font-weight: 600;
+    }
+
     .card-bottom-section{
         border-top: 1px solid black;
     }
