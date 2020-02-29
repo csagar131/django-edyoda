@@ -55,9 +55,10 @@ h3{
     background-color: white;
     }
     
-    .texted{
+    .discription{
     padding:1px 24px 11.2px 24px;
     }
+
 
     .card-img{
     border-top-left-radius: 7px;
@@ -74,6 +75,7 @@ h3{
 
     .author{
         font-weight: 500;
+        font-style: italic;
     }
 
 
