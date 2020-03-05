@@ -17,7 +17,7 @@ class Post(models.Model):
     title = models.CharField(max_length=256)
     content = models.TextField()
     status = models.CharField(max_length=1,choices=statuses)
-    category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name="posts")
 
     def __str__(self):
         return self.title
