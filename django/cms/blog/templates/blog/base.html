@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,900|Roboto&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
+        <script src="https://kit.fontawesome.com/48e95db22f.js" crossorigin="anonymous"></script>
+        <title>
+            Top Bar Creation
+        </title>
+        <link href="{% static 'blog/css/card-style.css' %}" rel="stylesheet">
+        {% block extra_head %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+        <div class="topbar">
+            <div id="edyoda-stories-logo">
+                <div id="edyoda-logo">EDYODA</div>
+                <p id="stories">Stories</p>
+            </div>
+            <div class="explore-categories">
+                Explore Categories
+                <span>
+                    <img src="{% static 'blog/images/dropdown.png' %}" width="12px" height="6px" alt="dropdownimg"/>
+                </span>
+            </div>
+        </div>
+        </header>
+        
+
+                {%block content %}
+                {% endblock %}
+                    
+            </div>
+          </div>
+          <footer>
+              <div class="footer-section">
+
+              </div>
+          </footer>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    for later project background image url
+    https://edyoda.s3.ap-south-1.amazonaws.com/public/landing-background.png
+-->

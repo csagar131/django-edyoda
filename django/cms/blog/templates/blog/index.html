@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="main-content">
+    <div class="sub-content">
+      <h1>Trending Posts</h1>
+            <div id="filter-by-category">
+                <img src="{% static 'blog/images/filter.png' %}" alt="filter-image" widht="25px" height="25px"/>
+                <p style="margin: 13.6px 0px 13.6px 6.8px;">Filter by Category</p>
+                
+            </div>
+            <div class="buttons-category">
+                <button id="btn-all">All</button>
+                <button class="btn">Artificial Intelligence</button>
+                <button class="btn">Cloud Computing</button>
+                <button class="btn">DevOps</button>
+                <button class="btn">Programming Languages</button>
+                <button class="btn">Mobile Application Development</button>
+                <button class="btn">Technology and Tools</button>
+                <button class="btn">Get a Job in a Tech Company</button>
+                <button class="btn">Others</button>
+            </div>
+
+
+<div class="the-cards-blocks">
+    {% for post in posts %}
+    <a href="{{post.id}}">
+        <div class="card-main">
+            <img src="https://edyoda.s3.amazonaws.com/media/blog-images/7_reasons_to_learn_Python_u3lFION.jpg" class="card-img"  alt="fresh grad" width ="280px"/>
+            <div class="discription">
+            <h2><span class="heading">{{post.title}}</span></h2>
+            <h4 style="margin-top:8px; margin-bottom:2px;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> Arman Ahmed</span>  |<span style="font-family: 'Roboto';font-size: 15px;"> 05 Jul 2019</span></span></h4>
+            <p class="para">
+                {{post.content|truncatewords:20}}
+            </p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

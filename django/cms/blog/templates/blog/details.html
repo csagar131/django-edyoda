@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link href="{% static 'blog/css/details.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="giant-card">
+    <div class=giant-card-item>
+    <img src="https://edyoda.s3.amazonaws.com/media/blog-images/learn-artificial-intelligence_E1bep5u.jpeg" alt="aiimage" id="card-image" width="760px" height="437px"/>
+        <div class="card-discription-heading">
+            <h2><span class="heading">{{post.title}}</span></h2>
+                <h4 style="padding-top:1px; margin: 0;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> Edyoda</span>  |<span style="font-family: 'Roboto';font-size: 15px;font-style: normal;"> 08 Jul 2019</span></span></h4>
+                <p class="para">
+                    {{post.content}} 
+                </p>    
+        </div>
+    </div>
+</div>
+
+{% endblock %}
