@@ -6,14 +6,25 @@ body{
 #topbar{
     width:100%;
     background-color: black;
-    padding:0px 28px;
+    padding:0px 150px;
     box-sizing: border-box;
     height: 60px;
+    color : white;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: fixed;
     top: 0;
+}
+
+#right-items{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#right-items h5{
+    margin: 0px 25px;
 }
 
 #main-content-1{
@@ -25,20 +36,77 @@ body{
 }
 
 #middle-div{
-    background-color: white;
+    background-color: black;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     margin-top: 200px;
-    padding:80px 150px;
-    margin-left:150px;
+    padding:80px 180px;
+    margin-left:180px;
+    opacity :0.69;
 }
 
 #middle-div h3{
     margin: 5px;
+    color: white;
+    font-size: 30px;
 }
 
 #middle-div h5{
     margin: 5px;
+    color : white;
+    font-size: 14px;
 }
 
+#btn-shopnow{
+    background-color:#DD546D ;
+    padding : 10px;
+    margin-top: 3px;
+    color : white;
+    border: none;
+    border-radius: 3px;
+
+}
+
+#main-content-2{
+    display: inline-flex;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content: center;
+    width: 1500px;
+}
+
+.items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid grey;
+    margin: 20px;
+    padding: 6px 25px;
+    border-radius: 5px;
+}
+
+.items h2{
+    margin-bottom: 2px;
+    margin-top: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.items h4{
+    margin-top: 2px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+#bottombar{
+
+    width:100%;
+    background-color: black;
+    padding:0px 150px;
+    box-sizing: border-box;
+    height: 40px;
+    color : white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
