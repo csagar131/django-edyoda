@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <script src="https://kit.fontawesome.com/48e95db22f.js" crossorigin="anonymous"></script>
+    <link href="{% static 'categories/css/product.css' %}" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <div id="topbar">
+            <h3>EdYoda</h3>
+            <div id="right-items">
+                <h5><i class="fas fa-user"></i>Cart</h5>
+            </div>
+        </div>
+    </header>
+
+    <div id="main-content-1">
+        <div id="welcome-block">
+            <h1>Welcome to our Online Store</h1>
+            <h3>We have the best cameras,watches and shirts for you.No need to hunt it around,we have all in one place.</h3>
+        </div>
+
+        <div id="card-grid">
+            {% for product in products %}
+            <div class="items">
+                <img src="https://www.tagheuer.com/on/demandware.static/-/Library-Sites-TagHeuer-Shared/default/dwb69622d9/images/menu/watch-finder-menu_s.jpg" alt="wathc-image" width="200px" height="120px"/>
+                <h2>{{product.p_name}}</h2>
+                <h4>Rs.{{product.p_price}}</h4>
+                <button class="btn-addcart">Add to Cart</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    <footer>
+        <div id="bottombar">
+            <h3>Copyright &copy;EdYoda.</h3>
+        </div>
+    </footer>
+</body>
+</html>

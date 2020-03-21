@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="{% static 'categories/css/index.css' %}" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/48e95db22f.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id="topbar">
+            <h3>EdYoda</h3>
+            <div id="right-items">
+                <h5><i class="fas fa-user"></i>SignUp</h5>
+                <h5><i class="fas fa-sign-in-alt"></i>Login</h5>
+            </div>
+        </div>
+    </header>
+    <div id="main-content-1">
+        <div id="middle-div">
+            <h3>We sell lifestyle </h3>
+            <h5>Flat 40% OFF on all premiun brands</h5>
+            <button id="btn-shopnow">Shop Now</button>
+        </div>
+    </div>
+    <div id="main-content-2">
+        <!-- <div id="card-grid"> -->
+            {% for item in items %}
+            <a id="card-grid" href="{{item.cat_name}}">
+            <div class="items">
+                <img src="{{ item.cat_image.url }}" alt="{{item.cat_name}}" width="320px" height="150px"/>
+                <h2>{{item.cat_name}}</h2>
+                <h4>{{item.cat_description}}</h4>
+                <!-- <h2>{{ item.cat_image.url }}</h2> -->
+            </div>
+            </a>
+            {% endfor %}
+        <!-- </div> -->
+    </div>
+    <footer>
+        <div id="bottombar">
+            <h3>Copyright &copy;EdYoda.</h3>
+        </div>
+    </footer>
+</body>
+</html>

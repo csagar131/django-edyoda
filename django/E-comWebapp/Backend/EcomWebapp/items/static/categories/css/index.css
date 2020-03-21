@@ -1,0 +1,121 @@
+body{
+    margin: 0px;
+}
+
+
+#topbar{
+    width:100%;
+    background-color: black;
+    padding:0px 150px;
+    box-sizing: border-box;
+    height: 60px;
+    color : white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+}
+
+#right-items{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#right-items h5{
+    margin: 0px 25px;
+}
+
+#main-content-1{
+    background-image: url(https://dkexpressions.co.za/wp-content/uploads/2018/03/PRODUCT-PHOTOGRAPHY.jpg);
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#middle-div{
+    background-color: black;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    padding:80px 180px;
+    margin-left:180px;
+    opacity :0.69;
+}
+
+#middle-div h3{
+    margin: 5px;
+    color: white;
+    font-size: 30px;
+}
+
+#middle-div h5{
+    margin: 5px;
+    color : white;
+    font-size: 14px;
+}
+
+#btn-shopnow{
+    background-color:#DD546D ;
+    padding : 10px;
+    margin-top: 3px;
+    color : white;
+    border: none;
+    border-radius: 3px;
+
+}
+
+
+#card-grid{
+    display: inline-flex;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    
+}
+
+.items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid grey;
+    margin: 20px 15px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    width: 25%;
+}
+
+.items :hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.items h2{
+    margin-bottom: 2px;
+    margin-top: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.items h4{
+    margin-top: 2px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+#bottombar{
+
+    width:100%;
+    background-color: black;
+    padding:0px 150px;
+    box-sizing: border-box;
+    height: 40px;
+    color : white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
