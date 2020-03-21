@@ -1,0 +1,43 @@
+#main-content{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#vertical-grid{
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10px;
+}
+
+.vertical-grid-image{
+	margin: 5px 0px;
+}
+
+#main-image{
+	margin:15px 20px;
+}
+
+#details{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+#similar-products{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+#horizontal-grid{
+	display: flex;
+	flex-direction: row;
+	margin: 10px;
+
+}
+
+.horizontal-grid-image{
+	margin: 2px 30px;
+}
