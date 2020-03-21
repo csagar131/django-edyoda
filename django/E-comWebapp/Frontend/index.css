@@ -76,6 +76,7 @@ body{
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
+    
 }
 
 .items{
@@ -83,10 +84,15 @@ body{
     flex-direction: column;
     align-items: center;
     border: 1px solid grey;
-    margin: 20px;
+    margin: 20px 15px;
     padding: 6px 10px;
     border-radius: 5px;
     width: 25%;
+}
+
+.items :hover{
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 .items h2{
