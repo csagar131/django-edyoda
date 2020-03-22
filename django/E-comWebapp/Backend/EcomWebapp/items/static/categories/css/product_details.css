@@ -1,0 +1,88 @@
+body{
+	margin:0px;
+}
+
+#topbar{
+    width:100%;
+    background-color: black;
+    padding:0px 150px;
+    box-sizing: border-box;
+    height: 60px;
+    color : white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+}
+
+#main-content{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 100px;
+}
+
+#vertical-grid{
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10px;
+}
+
+.vertical-grid-image{
+	margin: 5px 0px;
+}
+
+#main-image{
+	margin:15px 20px;
+}
+
+#details{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+#similar-products{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+#horizontal-grid{
+	display: flex;
+	flex-direction: row;
+	margin: 10px;
+
+}
+
+.horizontal-grid-image{
+	margin: 2px 30px;
+}
+
+#topbar{
+    width:100%;
+    background-color: black;
+    padding:0px 150px;
+    box-sizing: border-box;
+    height: 60px;
+    color : white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+}
+
+#bottombar{
+    width:100%;
+    background-color: black;
+    padding:0px 150px;
+    box-sizing: border-box;
+    height: 40px;
+    color : white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

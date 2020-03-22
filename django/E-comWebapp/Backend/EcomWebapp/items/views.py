@@ -13,4 +13,11 @@ def index(request):
 def products(request,category):
     category = Categories.objects.get(cat_name = category)
     products = category.products.all()
-    return render(request,'products.html',context={'products':products})
+    return render(request,'products.html',context={'products':products,'category':category})
+
+def product_details(request,category,product_details):
+    product_details = product_details.split("%")
+    category = Categories.objects.get(cat_name = category)
+    products = category.products.all()
+    product_detail = category.products.get(p_name__contains = product_details[0])
+    return render(request,'product_details.html',context={'products':products,'product_details':product_detail})

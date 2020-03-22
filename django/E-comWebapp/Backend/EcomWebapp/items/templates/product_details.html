@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link href="{% static 'categories/css/product_details.css' %}" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/48e95db22f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div id="topbar">
+            <h3>EdYoda</h3>
+            <div id="right-items">
+                <h5><i class="fas fa-user"></i>Cart</h5>
+            </div>
+        </div>
+    </header>
+
+	<div id="main-content">
+		<div id="vertical-grid">
+            <img src="{{product_details.p_image.url}}" alt="batman" width="100px" height="100px" class="vertical-grid-image">
+            <img src="{{product_details.p_image.url}}" alt="batman" width="100px" height="100px" class="vertical-grid-image">
+            <img src="{{product_details.p_image.url}}" alt="batman" width="100px" height="100px" class="vertical-grid-image">
+            <img src="{{product_details.p_image.url}}" alt="batman" width="100px" height="100px" class="vertical-grid-image">
+            <img src="{{product_details.p_image.url}}" alt="batman" width="100px" height="100px" class="vertical-grid-image">
+        </div>
+
+		<div id="main-image">
+			<img src="{{product_details.p_image.url}}" alt="batman" width="500px" height="540px">
+
+			<h5>Add some product details and reviews</h5>
+		</div>
+
+		<div id="details">
+			<blockquote>{{product_details.p_description}}</blockquote>
+		</div>
+	</div>	
+
+	<div id="similar-products">
+		<h5>Similar Products</h5>
+		<div id="horizontal-grid">
+            {% for product in products %}
+            <img src="{{product.p_image.url}}" alt="batman" width="150px" height="150px" class="horizontal-grid-image">
+            {% endfor %}
+        </div>
+	</div>
+
+    <footer>
+        <div id="bottombar">
+            <h3>Copyright &copy;EdYoda.</h3>
+        </div>
+    </footer>
+</body>
+</html>
