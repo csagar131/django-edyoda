@@ -18,6 +18,7 @@ class Post(models.Model):
     content = models.TextField()
     status = models.CharField(max_length=1,choices=statuses)
     category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name="posts")
+    images = models.ImageField(upload_to="blog/post",blank=True)
 
     def __str__(self):
         return self.title
