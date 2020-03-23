@@ -16,5 +16,13 @@ def blog_details(request,id,*args,**kwargs):
 
 def contact_view(request,*args,**kwargs):
 
-    form = ContactForm()
-    return render(request,'blog/contact.html',context={'form':form})
+    if request.method == "GET":
+        form = ContactForm()
+        return render(request,'blog/contact.html',context={'form':form})
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            return HttpResponse("Thank you")
+        else:
+            return render(request,'blog/contact.html',context={'form':form})
