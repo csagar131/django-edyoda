@@ -26,3 +26,6 @@ def contact_view(request,*args,**kwargs):
             return HttpResponse("Thank you")
         else:
             return render(request,'blog/contact.html',context={'form':form})
+
+
+    
