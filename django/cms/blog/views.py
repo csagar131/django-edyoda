@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from blog.models import Post
-from blog.forms import ContactForm
+from blog.forms import ContactForm,PostForm
 # Create your views here.
 
 
@@ -29,3 +29,7 @@ def contact_view(request,*args,**kwargs):
 
 
     
+def post_model_form(request,*args,**kwargs):
+    if request.method == "GET":
+        form = PostForm()
+        return render(request,'blog/post.html',context={'form':form})

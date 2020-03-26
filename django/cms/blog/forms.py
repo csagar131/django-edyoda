@@ -1,10 +1,9 @@
 from django import forms
 import re
-
+from blog.models import Post
 class ContactForm(forms.Form):
 
     countries = [('IND','INDIA'),('CHN','CHINA')]
-
     name = forms.CharField(max_length=50)
     email = forms.EmailField(required = False)
     phone = forms.RegexField(regex='^[6-9][0-9]{9}$',required = False)
@@ -27,3 +26,9 @@ class ContactForm(forms.Form):
         if not m:
             raise forms.ValidationError("password should contains atleast 1 uppercase")
         return password
+
+class PostForm(forms.ModelForm):
+
+    class Meta:
+        model = Post
+        fields = ['title','content','status','category','images']
