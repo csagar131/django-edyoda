@@ -33,3 +33,15 @@ def post_model_form(request,*args,**kwargs):
     if request.method == "GET":
         form = PostForm()
         return render(request,'blog/post.html',context={'form':form})
+
+    else:
+        print(request.POST)
+        print(request.FILES)
+        form = PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.cleaned_data.get('images')
+            # print(image.__dict__)
+            form.save()
+            return HttpResponse("Thanking You")
+        return render(request,'blog/post.html',context={'form':form})
+
