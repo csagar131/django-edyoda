@@ -9,10 +9,10 @@
 
 <div class="giant-card">
     <div class=giant-card-item>
-    <img src="https://edyoda.s3.amazonaws.com/media/blog-images/learn-artificial-intelligence_E1bep5u.jpeg" alt="aiimage" id="card-image" width="760px" height="437px"/>
+    <img src="{{post.images.url}}" alt="aiimage" id="card-image" width="760px" height="437px"/>
         <div class="card-discription-heading">
             <h2><span class="heading">{{post.title}}</span></h2>
-                <h4 style="padding-top:1px; margin: 0;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> Edyoda</span>  |<span style="font-family: 'Roboto';font-size: 15px;font-style: normal;"> 08 Jul 2019</span></span></h4>
+                <h4 style="padding-top:1px; margin: 0;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> {{post.author}}</span>  |<span style="font-family: 'Roboto';font-size: 15px;font-style: normal;">{{post.date}}</span></span></h4>
                 <p class="para">
                     {{post.content}} 
                 </p>    

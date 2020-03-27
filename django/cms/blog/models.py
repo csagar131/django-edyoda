@@ -16,6 +16,8 @@ class Post(models.Model):
     ]
     title = models.CharField(max_length=256)
     content = models.TextField()
+    author = models.CharField(max_length =50)
+    date =  models.CharField(max_length = 50)
     status = models.CharField(max_length=1,choices=statuses)
     category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name="posts")
     images = models.ImageField(upload_to="blog/post",blank=True)
