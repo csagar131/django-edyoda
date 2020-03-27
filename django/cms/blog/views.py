@@ -45,3 +45,21 @@ def post_model_form(request,*args,**kwargs):
             return HttpResponse("Thanking You")
         return render(request,'blog/post.html',context={'form':form})
 
+
+def post_edit_model_form(request,id,*args,**kwargs):
+    try:
+        post = Post.objects.get(id = id)
+    except:
+        return HttpResponse("Invalid id")
+
+    if request.method == "GET":
+        form = PostForm(instance = post)
+        return render(request,'blog/post.html',context={'form':form})
+
+    form = PostForm(request.POST,request.FILES,instance = post)
+    if form.is_valid():
+        form.save()
+        return render(request,'blog/post.html',context={'form':form})
+    return render(request,'blog/post.html',context={'form':form})
+
+
