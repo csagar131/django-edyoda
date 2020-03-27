@@ -1,14 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from blog.models import Post
+from blog.models import Post,Category
 from blog.forms import ContactForm,PostForm
 # Create your views here.
 
 
 def index(request,*args,**kwargs):
     posts = Post.objects.all()
-    return render(request,'blog/index.html',context={'posts':posts})
+    category = Category.objects.all()
+    return render(request,'blog/index.html',context={'posts':posts,'category':category})
 
+def category_index(request,id,*args,**kwargs):
+    catall = Category.objects.all()
+    category = Category.objects.get(id = id)
+    posts = Post.objects.filter(category = category)
+    return render(request,'blog/category_index.html',context={'posts':posts,'category':catall})
 
 def blog_details(request,id,*args,**kwargs):
     post_details = Post.objects.get(id=id)
