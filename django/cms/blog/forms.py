@@ -1,7 +1,3 @@
-
-
-
-
 from django import forms
 import re
 from blog.models import Post
@@ -30,6 +26,9 @@ class ContactForm(forms.Form):
         if not m:
             raise forms.ValidationError("password should contains atleast 1 uppercase")
         return password
+
+class Search(forms.Form):
+    search_blog = forms.CharField(max_length=50,widget=forms.TextInput(attrs={'id':'searchbar'}))
 
 class PostForm(forms.ModelForm):
 

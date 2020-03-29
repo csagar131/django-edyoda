@@ -60,6 +60,11 @@ body{
     }
 
 
+#searchbar{
+    margin-top: 5px;
+}
+
+
     .explore-categories{
         margin-left: 72px;
         font-size: 14px;
