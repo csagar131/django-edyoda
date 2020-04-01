@@ -59,7 +59,7 @@ class BlogDetailView(DetailView):
     model = Post
     template_name = 'blog/details.html'
     context_object_name = 'post'
-
+ 
 
 # def blog_details(request,id,*args,**kwargs):
 #     post_details = Post.objects.get(id=id)
