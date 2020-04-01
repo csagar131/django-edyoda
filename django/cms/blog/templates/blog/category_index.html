@@ -10,31 +10,24 @@
                 
             </div>
             <div class="buttons-category">
-                <a href=""><button id="btn-all">All</button></a>
-                <a href="2"><button class="btn">Artificial Intelligence</button></a>
-                <a href=""><button class="btn">Cloud Computing</button></a>
-                <a href=""><button class="btn">DevOps</button></a>
-                <a href="1"><button class="btn">Programming Languages</button></a>
-                <a href=""><button class="btn">Mobile Application Development</button></a>
-                <a href=""><button class="btn">Technology and Tools</button></a>
-                <a href=""><button class="btn">Get a Job in a Tech Company</button></a>
-                <a href="3"><button class="btn">Others</button></a>
+              {% for cat in category %}
+                <a href="/{{cat.id}}"><button id="btn-all">{{cat.name}}</button></a>
+              {% endfor %}
             </div>
 
 
 <div class="the-cards-blocks">
     {% for post in posts %}
-
-    <a href="" class="card-main">
-        <img src="{{post.images.url}}" class="card-img"  alt="fresh grad" width ="276px" height="200px"/>
-        <div class="discription">
-        <h2><span class="heading">{{post.title|truncatewords:5}}</span></h2>
-        <h4 style="margin-top:8px; margin-bottom:2px;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> {{post.author}}</span>  |<span style="font-family: 'Roboto';font-size: 15px;">{{post.date}}</span></span></h4>
-          <p class="para">
-            {{post.content|truncatewords:20}} 
-          </p>
-        </div>
-    </a>
+    <a href="/stories/{{post.id}}" class="card-main">
+      <img src="{{post.images.url}}" class="card-img"  alt="fresh grad" width ="276px" height="200px"/>
+      <div class="discription">
+      <h2><span class="heading">{{post.title|truncatewords:5}}</span></h2>
+      <h4 style="margin-top:8px; margin-bottom:2px;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> {{post.author}}</span>  |<span style="font-family: 'Roboto';font-size: 15px;">{{post.date}}</span></span></h4>
+        <p class="para">
+          {{post.content|truncatewords:20}} 
+        </p>
+      </div>
+  </a>
 
     {% endfor %}
 </div>

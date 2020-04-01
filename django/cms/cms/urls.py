@@ -18,11 +18,12 @@ from django.urls import path,include
 import blog.urls
 from django.conf import settings
 from django.conf.urls.static import static
+from blog.views import CategoryIndexView,IndexView
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('stories/', include('blog.urls')),
-    path('<int:id>/',include('blog.urls')),
+    path('<int:id>/', CategoryIndexView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
