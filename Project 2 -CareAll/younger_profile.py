@@ -62,7 +62,7 @@ class YoungerProfile():
 
     # younger can give review and rating to elders
     def review(self):
-        elder_name = input("Enter name whome do you want to rate and review") #taking name of elder
+        elder_name = input("Enter name whom do you want to rate and review") #taking name of elder
         elderid = self.get_elder_id(elder_name) #getting elderid corresponds to elder_name
         review = input("Please give your review in text:")
         rating = float(input("your rating"))

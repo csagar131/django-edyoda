@@ -33,4 +33,4 @@ mycursor.execute("CREATE TABLE IF NOT EXISTS elders (PK_elder_id INT AUTO_INCREM
 mycursor.execute("CREATE TABLE IF NOT EXISTS request (PK_request_id INT AUTO_INCREMENT PRIMARY KEY, FK_younger_id integer references youngers(PK_younger_id), FK_elder_id integer references elders(PK_elder_id), request_status BOOLEAN Default False)")
 
 # reviews table
-mycursor.execute("CREATE TABLE IF NOT EXISTS reviews (PK_request_id INT AUTO_INCREMENT PRIMARY KEY, FK_user_id Integer references users(PK_user_id), review TEXT, rating integer, review_by VARCHAR(255))")
+mycursor.execute("CREATE TABLE IF NOT EXISTS reviews (PK_request_id INT AUTO_INCREMENT PRIMARY KEY, FK_user_id Integer references users(PK_user_id), review TEXT, rating float, review_by VARCHAR(255))")

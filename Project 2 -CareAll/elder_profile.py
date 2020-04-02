@@ -90,7 +90,7 @@ class ElderProfile():
             mydb.commit()
 
 
-    # elder can see requests and accept whome they trus only 1 request can be accepted by elder      
+    # elder can see requests and accept whome they trust only 1 request can be accepted by elder      
     def show_request(self):
         pass
 
@@ -100,7 +100,19 @@ class ElderProfile():
 
     # elder can give review and rating to youngers
     def review(self):
-        pass
+        younger_name = input("Enter name whom do you want to rate and review") #taking name of younger
+        youngerid = self.get_younger_id(younger_name) #getting youngerid corresponds to younger_name
+        review = input("Please give your review in text:")
+        rating = float(input("your rating"))
+        #younger_name = self.younger_name
+        sql = 'insert into reviews(fk_user_id,review,rating,review_by) values(%s,%s,%s,%s)'
+        val = (youngerid,review,rating,self.elder_name)
+        mycursor.execute(sql,val)
+        mydb.commit()
+        #updating the elders data after the review
+        sql = f'update youngers set rating={rating} where fk_user_id={youngerid}' 
+        mycursor.execute(sql)
+        mydb.commit()
 
     def log_out(self):
         import index
@@ -118,5 +130,19 @@ class ElderProfile():
             fullname = info[1].split(" ")
             if fname.lower() == fullname[0].lower() and lname.lower() == fullname[1].lower():
                 elderid = info[0]
+        return elderid
 
+
+    def get_younger_id(self,younger_name):
+        younger_name = younger_name.split(" ")
+        fname =  younger_name[0]
+        lname = younger_name[1]   #fetching first and last name because two person may have same fname
+        sql = 'select pk_user_id,name from users'
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        elderid = 0
+        for info in result:
+            fullname = info[1].split(" ")
+            if fname.lower() == fullname[0].lower() and lname.lower() == fullname[1].lower():
+                elderid = info[0]
         return elderid

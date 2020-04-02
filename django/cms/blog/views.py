@@ -2,10 +2,22 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from blog.models import Post,Category
 from blog.forms import ContactForm,PostForm,Search
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,FormView
 from django.utils.text import slugify
 # Create your views here.
 
+
+class IndexView(ListView):
+    model = Post
+    template_name = "blog/index.html"
+    context_object_name = 'posts'
+    queryset = Post.objects.filter(status = "P")
+ 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
+        
 
 # def index(request,*args,**kwargs):
 #     posts = Post.objects.all()
@@ -22,16 +34,6 @@ from django.utils.text import slugify
 #             return render(request,'blog/index.html',context={'posts':posts,'category':category,'form':form})
 #         return render(request,'blog/index.html',context={'posts':posts,'category':category,'form':form})
 
-class IndexView(ListView):
-    model = Post
-    template_name = "blog/index.html"
-    context_object_name = 'posts'
-    queryset = Post.objects.filter(status = "P")
- 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category'] = Category.objects.all()
-        return context
 
 class CategoryIndexView(ListView):
     model = Post
@@ -65,18 +67,32 @@ class BlogDetailView(DetailView):
 #     post_details = Post.objects.get(id=id)
 #     return render(request,'blog/details.html',context={'post':post_details})
 
-def contact_view(request,*args,**kwargs):
 
-    if request.method == "GET":
-        form = ContactForm()
-        return render(request,'blog/contact.html',context={'form':form})
-    else:
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
-            return HttpResponse("Thank you")
-        else:
-            return render(request,'blog/contact.html',context={'form':form})
+
+
+class ContactFormView(FormView):
+    form_class = ContactForm
+    success_url = 'contact'
+    template_name = 'blog/contact.html'
+
+    def form_valid(self,form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+# def contact_view(request,*args,**kwargs):
+
+#     if request.method == "GET":
+#         form = ContactForm()
+#         return render(request,'blog/contact.html',context={'form':form})
+#     else:
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             print(form.cleaned_data)
+#             return HttpResponse("Thank you")
+#         else:
+#             return render(request,'blog/contact.html',context={'form':form})
+
+
 
 
     
