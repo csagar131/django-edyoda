@@ -18,7 +18,7 @@
 
 <div class="the-cards-blocks">
     {% for post in posts %}
-    <a href="/stories/{{post.slug}}" class="card-main">
+    <a href="{{ post.get_absolute_url }}" class="card-main">
       <img src="{{post.images.url}}" class="card-img"  alt="fresh grad" width ="276px" height="200px"/>
       <div class="discription">
       <h2><span class="heading">{{post.title|truncatewords:5}}</span></h2>

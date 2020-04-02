@@ -36,8 +36,8 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title','content','status','category','images']
 
-    def clean_images(self):
-        image = self.cleaned_data.get('images')
-        if image.size > 4000000:
-            raise forms.ValidationError('size must be less than 4mb',code="size")
-        return image
+    # def clean_images(self):
+    #     image = self.cleaned_data.get('images')
+    #     if image.size > 4000000:
+    #         raise forms.ValidationError('size must be less than 4mb',code="size")
+    #     return image

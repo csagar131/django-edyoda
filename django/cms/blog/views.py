@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from blog.models import Post,Category
 from blog.forms import ContactForm,PostForm,Search
-from django.views.generic import ListView,DetailView,FormView
+from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView
 from django.utils.text import slugify
 # Create your views here.
 
@@ -93,40 +93,51 @@ class ContactFormView(FormView):
 #             return render(request,'blog/contact.html',context={'form':form})
 
 
-
+class PostModelFormView(CreateView):
+    # model = Post
+    # fields = ['title','content','status','category','images']
+    # success_url = 'posts'
+    template_name =  'blog/post.html'
+    form_class = PostForm
 
     
-def post_model_form(request,*args,**kwargs):
-    if request.method == "GET":
-        form = PostForm()
-        return render(request,'blog/post.html',context={'form':form})
+# def post_model_form(request,*args,**kwargs):
+#     if request.method == "GET":
+#         form = PostForm()
+#         return render(request,'blog/post.html',context={'form':form})
 
-    else:
-        print(request.POST)
-        print(request.FILES)
-        form = PostForm(request.POST,request.FILES)
-        if form.is_valid():
-            image = form.cleaned_data.get('images')
-            # print(image.__dict__)
-            form.save()
-            return HttpResponse("Thanking You")
-        return render(request,'blog/post.html',context={'form':form})
+#     else:
+#         print(request.POST)
+#         print(request.FILES)
+#         form = PostForm(request.POST,request.FILES)
+#         if form.is_valid():
+#             image = form.cleaned_data.get('images')
+#             # print(image.__dict__)
+#             form.save()
+#             return HttpResponse("Thanking You")
+#         return render(request,'blog/post.html',context={'form':form})
 
 
-def post_edit_model_form(request,id,*args,**kwargs):
-    try:
-        post = Post.objects.get(id = id)
-    except:
-        return HttpResponse("Invalid id")
+class PostFormUpdateView(UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'blog/post.html'
 
-    if request.method == "GET":
-        form = PostForm(instance = post)
-        return render(request,'blog/post.html',context={'form':form})
 
-    form = PostForm(request.POST,request.FILES,instance = post)
-    if form.is_valid():
-        form.save()
-        return render(request,'blog/post.html',context={'form':form})
-    return render(request,'blog/post.html',context={'form':form})
+# def post_edit_model_form(request,id,*args,**kwargs):
+#     try:
+#         post = Post.objects.get(id = id)
+#     except:
+#         return HttpResponse("Invalid id")
+
+#     if request.method == "GET":
+#         form = PostForm(instance = post)
+#         return render(request,'blog/post.html',context={'form':form})
+
+#     form = PostForm(request.POST,request.FILES,instance = post)
+#     if form.is_valid():
+#         form.save()
+#         return render(request,'blog/post.html',context={'form':form})
+#     return render(request,'blog/post.html',context={'form':form})
 
 
