@@ -171,7 +171,6 @@ h3{
         font-style: italic;
     }
 
-
     .para{
         font-family: "Raleway";
         font-size: 15px;
@@ -244,4 +243,21 @@ h3{
 
     a {
         text-decoration: none;
+    }
+
+
+    @media (max-width: 400px){
+        .card-main{
+            width:30%; 
+        }
+
+        .the-cards-blocks{
+        
+            /* padding-left:15px; */
+            background-color:#F1F5FE;
+            display: block;
+            justify-content: flex-start;
+            /* flex-wrap: wrap; */
+            margin-top: 15px;
+        }
     }
