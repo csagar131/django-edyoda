@@ -4,6 +4,7 @@ from blog.models import Post,Category
 from blog.forms import ContactForm,PostForm,Search
 from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView
 from django.utils.text import slugify
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
@@ -57,7 +58,8 @@ class CategoryIndexView(ListView):
 #     print(posts)
 #     return render(request,'blog/category_index.html',context={'posts':posts,'category':catall})
 
-class BlogDetailView(DetailView):
+class BlogDetailView(LoginRequiredMixin,DetailView):
+    login_url = 'login'
     model = Post
     template_name = 'blog/details.html'
     context_object_name = 'post'

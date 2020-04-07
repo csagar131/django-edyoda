@@ -28,7 +28,13 @@
                 </div>
               </div>
               <div id="topbar-right">
-                <button class="btn">login</button>
+                  {% if user.is_authenticated%}
+                    <span><b>welcome, {{user.get_username}}</b></span>
+                    <a href="{% url 'logout' %}"><button class="btn">Logout</button></a>
+                  {% else %}
+                    <a href="{% url 'login' %}"><button class="btn">Login</button></a>
+                    <a href="{% url 'signup' %}"><button class="btn">Sign Up</button></a>
+                  {% endif %} 
               </div>
             </div>
             </header>
