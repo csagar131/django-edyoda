@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-# Create your models here.
+from django.urls import reverse
 
 
 class Profile(models.Model):
@@ -18,4 +18,6 @@ class Profile(models.Model):
         self.slug = slugify(self.user.username)
         super().save(*args,**kwargs)
 
+    def get_absolute_url(self):
+        return reverse('profile',kwargs = {'slug':self.slug})
     

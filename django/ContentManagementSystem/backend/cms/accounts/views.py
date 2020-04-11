@@ -16,5 +16,4 @@ class UpdateProfileView(UpdateView):
     model = Profile
     form_class = UpdateProfileForm
     template_name = 'accounts/update_profile.html'
-    success_url = 'accounts/profile'
     
