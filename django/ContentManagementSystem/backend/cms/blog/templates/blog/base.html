@@ -29,7 +29,7 @@
               </div>
               <div id="topbar-right">
                   {% if user.is_authenticated%}
-                    <span><b>welcome, {{user.get_username}}</b></span>
+                    <span><b><a href="{% url 'profile' user.get_username %}">welcome, {{user.get_username}}</a></b></span>
                     <a href="{% url 'logout' %}"><button class="btn">Logout</button></a>
                   {% else %}
                     <a href="{% url 'login' %}"><button class="btn">Login</button></a>

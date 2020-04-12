@@ -4,7 +4,7 @@ from blog.models import Post,Category
 from blog.forms import ContactForm,PostForm,Search
 from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView
 from django.utils.text import slugify
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 # Create your views here.
 
 
@@ -95,10 +95,12 @@ class ContactFormView(FormView):
 #             return render(request,'blog/contact.html',context={'form':form})
 
 
-class PostModelFormView(CreateView):
+class PostModelFormView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     # model = Post
     # fields = ['title','content','status','category','images']
     # success_url = 'posts'
+    login_url = 'login'
+    permission_required = 'blog.add_post'
     template_name =  'blog/post.html'
     form_class = PostForm
 
@@ -120,7 +122,9 @@ class PostModelFormView(CreateView):
 #         return render(request,'blog/post.html',context={'form':form})
 
 
-class PostFormUpdateView(UpdateView):
+class PostFormUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    login_url ='login'
+    permission_required = 'blog.change_post'
     model = Post
     form_class = PostForm
     template_name = 'blog/post.html'

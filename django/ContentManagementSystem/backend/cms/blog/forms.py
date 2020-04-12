@@ -34,7 +34,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['title','content','status','category','images']
+        fields = ['title','content','status','category','images','author']
 
     # def clean_images(self):
     #     image = self.cleaned_data.get('images')
