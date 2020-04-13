@@ -11,7 +11,7 @@
             </div>
             <div class="buttons-category">
               {% for cat in category %}
-                <a href="/{{cat.id}}"><button class="btn">{{cat.name}}</button></a>
+                <a href="{% url 'category' cat.slug %}"><button class="btn">{{cat.name}}</button></a>
               {% endfor %}
             </div>
 

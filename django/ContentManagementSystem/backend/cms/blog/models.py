@@ -6,9 +6,14 @@ from django.urls import reverse
 class Category(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
+    slug = models.SlugField(blank = True)
 
     def __str__(self):
         return self.name
+
+    def save(self,*args,**kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args,**kwargs)
 
 class Post(models.Model):
     statuses = [
