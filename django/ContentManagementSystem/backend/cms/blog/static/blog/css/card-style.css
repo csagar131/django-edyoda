@@ -135,7 +135,7 @@ h3{
     display: inline-flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 
@@ -146,6 +146,7 @@ h3{
     border-radius: 7px;
     margin:10px 8px;
     background-color: white;
+    padding: 0.1px;
     }
     
     .discription{
@@ -157,6 +158,7 @@ h3{
     .card-img{
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
+    padding-top:1px;
     }
 
     .heading{
