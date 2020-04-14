@@ -9,10 +9,20 @@
 {% block content %}
 <div class="login">
     <h1>Login</h1>
+    <br/>
+    <br/>
+    <br/>
         <form method="POST" enctype="multipart/form-data">
-            {{form.as_p}}
+            <!-- {{form.as_p}} -->
             {% csrf_token %}
-            <input type="submit" name="Login">
+            {% for f in form %}
+            <span style="color:white">{{f.label_tag}}</span>
+            <span>{{f}}</span>
+            {% endfor %}
+            <a href="{% url 'password_reset' %}" style="color: whitesmoke;">-------------->Forgot Password<--------------</a>
+            <br/>
+            <br/>
+            <input type="submit" value="Login">
         </form>
 </div>
 

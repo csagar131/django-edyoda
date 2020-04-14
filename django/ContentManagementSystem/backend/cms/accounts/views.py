@@ -16,6 +16,7 @@ class UpdateProfileView(UpdateView):
     pk_url_kwarg = 'id'
     form_class = UpdateProfileForm
     template_name = 'accounts/update_profile.html'
+    success_url = "/stories"
 
 
     

@@ -10,10 +10,17 @@
 <div class="login">
     <h1>Signup</h1>
         <form method="POST" enctype="multipart/form-data">
-            {{form.as_p}}
+            <!-- {{form.as_p}} -->
             {% csrf_token %}
-            <input type="submit" name="Register">
+            {% for f in form %}
+            <span style="color:white">{{f.label_tag}}</span>
+            <span>{{f}}</span>
+            {% endfor %}
+            <input type="submit" value="Register">
+            <br/>
+            <br/>
         </form>
+        <a href="/stories"><button>Not Now</button>></a>
 </div>
 
 {% endblock %}
