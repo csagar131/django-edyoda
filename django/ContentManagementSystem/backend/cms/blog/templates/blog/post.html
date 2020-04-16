@@ -1,9 +1,30 @@
 {% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block extra_head %}
+<link href="{% static 'blog/css/post-update.css' %}" rel="stylesheet">
+{% endblock %}
+
 
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
-        {{form.as_p}}
-        {% csrf_token %}
-        <input type="submit" name="submit">
+<div class="login">
+    <h1>Edit Post</h1>
+    <br/>
+    <br/>
+    <br/>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for f in form %}
+            <br/>
+            <br/>
+            <span style="color:black">{{f.label_tag}}</span>
+            <span>{{f}}</span>
+            {% endfor %}
+            <br/>
+            <br/>
+            <input type="submit" value="Update Post">
         </form>
+</div>
+
 {% endblock %}

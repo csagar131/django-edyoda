@@ -29,10 +29,12 @@
               </div>
               <div id="topbar-right">
                   {% if user.is_authenticated%}
-                  <img id="user-img-wrap" src="" alt="img" width="25px" height="25px">
+                  <img id="user-img-wrap" src="{{user.get_image.url}}" alt="" width="25px" height="25px">
                     <span><b><a href="{{user.get_absolute_url}}">welcome, {{user.get_username}}</a></b></span>
                     <a href="{% url 'logout' %}"><button class="btn">Logout</button></a>
                   {% else %}
+                  <img id="user-img-wrap" src="https://img.icons8.com/plasticine/2x/user.png" alt="" width="25px" height="25px">
+                    <span><b>hello,User</b></span>
                     <a href="{% url 'login' %}"><button class="btn">Login</button></a>
                     <a href="{% url 'signup' %}"><button class="btn">Sign Up</button></a>
                   {% endif %} 

@@ -12,10 +12,25 @@
     <img src="{{post.images.url}}" alt="aiimage" id="card-image" width="760px" height="437px"/>
         <div class="card-discription-heading">
             <h2><span class="heading">{{post.title}}</span></h2>
-                <h4 style="padding-top:1px; margin: 0;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> {{post.author}}</span>  |<span style="font-family: 'Roboto';font-size: 15px;font-style: normal;">{{post.date}}</span></span></h4>
+                <h4 style="padding-top:1px; margin: 0;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> Arman Ahmed</span>  |<span style="font-family: 'Roboto';font-size: 15px;font-style: normal;">05 Jul 2019</span></span></h4>
                 <p class="para">
                     {{post.content}} 
                 </p>    
+        </div>
+        <div class="card-bottom-section">
+            <div class="card-bottom-section-content">
+                <img src="https://edyoda.s3.amazonaws.com/media/profile-picture/0.png" width="128px" height="128px" style="margin-right: 32px; display: inline;"/>
+                    <div id="card-bottom-section-content-text">
+                    <h4 style="padding-top:1px; margin: 0;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif; font-size: 16px;"> Edyoda
+                    </span></span></h4>
+                    <p class="para" style="margin-top:4.5px;">
+                        Edyoda is an open platform to learn technology and share tech content
+                    </p>
+                    </div>
+            </div>
+            <div class="card-bottom-button-section">
+                <button class="btn">{{post.category.name}}</button>
+            </div>
         </div>
     </div>
 </div>

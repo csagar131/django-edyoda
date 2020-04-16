@@ -27,4 +27,5 @@ urlpatterns = [
     path('stories/', include('blog.urls')),
     path('<slug:slug>/', CategoryIndexView.as_view(),name = 'category'),
     path('accounts/', include('accounts.urls')),
+    path('tinymce/',include('tinymce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
