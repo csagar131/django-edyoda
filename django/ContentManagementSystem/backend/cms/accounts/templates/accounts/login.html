@@ -16,7 +16,7 @@
             <!-- {{form.as_p}} -->
             {% csrf_token %}
             {% for f in form %}
-            <span style="color:white">{{f.label_tag}}</span>
+            <span style="color:black">{{f.label_tag}}</span>
             <span>{{f}}</span>
             {% endfor %}
             <a href="{% url 'password_reset' %}" style="color: whitesmoke;">-------------->Forgot Password<--------------</a>

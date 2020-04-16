@@ -9,7 +9,7 @@ class SignUpForm(UserCreationForm):
     is_author = forms.BooleanField()
     class Meta:
         model = User
-        fields = ('username','password1','password2','first_name','last_name','email','is_author')
+        fields = ('first_name','last_name','username','email','image','password1','password2','is_author')
 
 
 class UpdateProfileForm(forms.ModelForm):

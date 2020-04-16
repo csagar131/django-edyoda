@@ -29,7 +29,8 @@
                     </div>
             </div>
             <div class="card-bottom-button-section">
-                <button class="btn">{{post.category.name}}</button>
+                <a href="{% url 'category' post.category.slug%}"><button class="btn">{{post.category.name}}</button></a>
+                <a href="{% url 'update-post' post.slug %}"><button class="btn">Update Post</button></a>
             </div>
         </div>
     </div>

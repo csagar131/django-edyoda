@@ -2,24 +2,26 @@
 {% load static %}
 
 {% block extra_head %}
-<link href="{% static 'accounts/css/logsignin.css' %}" rel="stylesheet">
+<link href="{% static 'accounts/css/signup.css' %}" rel="stylesheet">
 {% endblock %}
 
 
 {% block content %}
 <div class="login">
     <h1>Signup</h1>
-        <form method="POST" enctype="multipart/form-data">
-            <!-- {{form.as_p}} -->
-            {% csrf_token %}
-            {% for f in form %}
-            <span style="color:white">{{f.label_tag}}</span>
-            <span>{{f}}</span>
-            {% endfor %}
-            <input type="submit" value="Register">
-            <br/>
-            <br/>
-        </form>
+       <div id="form-ele">
+            <form method="POST" enctype="multipart/form-data">
+                <!-- {{form.as_p}} -->
+                {% csrf_token %}
+                {% for f in form %}
+                <span style="color:black">{{f.label_tag}}</span>
+                <span>{{f}}</span>
+                {% endfor %}
+                <input type="submit" value="Register">
+                <br/>
+                <br/>
+            </form>
+        </div>
         <a href="/stories"><button>Not Now</button>></a>
 </div>
 

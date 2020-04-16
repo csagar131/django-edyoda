@@ -14,7 +14,7 @@ body{
     height: 30px;
     box-sizing: border-box;
     position: fixed;
-    /* top:0;  */
+    top:0;
 }
 
 #topbar-left{
@@ -114,6 +114,7 @@ body{
     width:100%;
     padding:20px 10px 10px 10px;
     box-sizing: border-box;
+    margin-top:60px;
     
 }
 h1{
@@ -153,6 +154,10 @@ h3{
     margin:10px 8px;
     background-color: white;
     padding: 0.1px;
+    }
+
+    .card-main:hover img{
+    transform: scale(1.005);
     }
     
     .discription{
