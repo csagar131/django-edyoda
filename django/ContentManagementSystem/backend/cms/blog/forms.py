@@ -32,12 +32,8 @@ class Search(forms.Form):
 
 class PostForm(forms.ModelForm):
 
+    content = forms.CharField(widget=forms.Textarea(attrs={'cols': 100, 'rows': 26}))
+
     class Meta:
         model = Post
-        fields = ['title','content','status','category','images']
-
-    # def clean_images(self):
-    #     image = self.cleaned_data.get('images')
-    #     if image.size > 4000000:
-    #         raise forms.ValidationError('size must be less than 4mb',code="size")
-    #     return image
+        fields = ['title','content','date','author_name','status','category','images']

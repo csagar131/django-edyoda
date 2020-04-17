@@ -10,20 +10,52 @@
 {% block content %}
 <div class="login">
     <h1>Edit Post</h1>
-    <br/>
-    <br/>
-    <br/>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {% for f in form %}
+            <div class="form-ele">
+                <p>{{form.title.label_tag}}</p>
+                <p>{{form.title}}</p>
+            </div>
+            <div id="content-sec">
+                <p>{{form.content.label_tag}}</p>
+                <p>{{form.content}}</p>
+            </div>
+            <div class="form-ele-flex">
+                <div>
+                    <p>{{form.date.label_tag}}</p>
+                    <p>{{form.date}}</p>
+                </div>
+                <div>
+                    <p>{{form.author_name.label_tag}}</p>
+                    <p>{{form.author_name}}</p>
+                </div>
+
+            </div>
+            <div id="below-content">
+            <div class="form-ele-flex">
+                <div>
+                    <p>{{form.status.label_tag}}</p>
+                    <p>{{form.status}}</p>
+                </div>
+                <div>
+                    <p>{{form.category.label_tag}}</p>
+                    <p>{{form.category}}</p>
+                </div>
+
+            </div>
+
+            <div class="form-ele">
+                <p>{{form.images.label_tag}}</p>
+                <p>{{form.images}}</p>
+            </div>
             <br/>
             <br/>
-            <span style="color:black">{{f.label_tag}}</span>
-            <span>{{f}}</span>
-            {% endfor %}
+            <input type="submit" value="Update Post" id="update-post-btn">
             <br/>
             <br/>
-            <input type="submit" value="Update Post">
+            <br/>
+            <br/>
+        </div>
         </form>
 </div>
 

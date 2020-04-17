@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_head %}
-<link href="{% static 'accounts/css/logsignin.css' %}" rel="stylesheet">
+<link href="{% static 'accounts/css/login.css' %}" rel="stylesheet">
 {% endblock %}
 
 
@@ -19,7 +19,9 @@
             <span style="color:black">{{f.label_tag}}</span>
             <span>{{f}}</span>
             {% endfor %}
-            <a href="{% url 'password_reset' %}" style="color: whitesmoke;">-------------->Forgot Password<--------------</a>
+            <br/>
+            <br/>
+            <a href="{% url 'password_reset' %}" style="color: whitesmoke;"> &emsp;&emsp; &emsp;&emsp; &emsp;Forgot Password</a>
             <br/>
             <br/>
             <input type="submit" value="Login">
