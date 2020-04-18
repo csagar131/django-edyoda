@@ -14,7 +14,7 @@
             {% csrf_token %}
             <div class="form-ele">
                 <p>{{form.title.label_tag}}</p>
-                <p>{{form.title}}</p>
+                <p id="title">{{form.title}}</p>
             </div>
             <div id="content-sec">
                 <p>{{form.content.label_tag}}</p>
@@ -54,6 +54,8 @@
             <br/>
         </div>
         </form>
+        <br/>
+        <br/>
 </div>
 
 {% endblock %}
