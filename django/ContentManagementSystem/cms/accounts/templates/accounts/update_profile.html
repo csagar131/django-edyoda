@@ -1,9 +1,56 @@
 {% extends 'blog/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link href="{% static 'accounts/css/update-profile.css' %}" rel="stylesheet">
+{% endblock %}
+
 
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
-        {{form.as_p}}
-        {% csrf_token %}
-        <input type="submit" name="Register">
-    </form>
+<div class="login">
+    <h1>Update Your Profile Here</h1>
+        <img src="{{user.image.url}}"  width="80px" height="80px"/>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="two-flex">
+                    <div>
+                    <p>{{form.first_name.label_tag}}</p>
+                    <p>{{form.first_name}}</p>
+                    </div>
+                    <div>
+                    <p>{{form.last_name.label_tag}}</p>
+                    <p>{{form.last_name}}</p>
+                    </div>
+                </div>
+
+                <div class="two-flex">
+                    <div>
+                    <p>{{form.email.label_tag}}</p>
+                    <p>{{form.email}}</p>
+                    </div>
+                    <div>
+                    <p>{{form.image.label_tag}}</p>
+                    <p>{{form.image}}</p>
+                    </div>
+                </div>
+                <div>
+                    <p>{{form.bio.label_tag}}</p>
+                    <p>{{form.bio}}</p>
+                </div>
+
+                <div>
+                    <p class="is_author">{{form.is_author.label_tag}}</p>
+                    <p class="is_author">{{form.is_author}}</p>
+                </div>
+                <br/>
+                <br/>
+                <input class="btn-down" type="submit" value="Update">
+            </form>
+            <br/>
+            <br/>
+        <a href="/stories"><button class="btn-down">Not Now</button></a>
+        <br/>
+        <br/>
+</div>
+
 {% endblock %}

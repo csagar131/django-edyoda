@@ -1,6 +1,8 @@
 from django import forms
 import re
 from blog.models import Post
+from tinymce.widgets import TinyMCE
+
 class ContactForm(forms.Form):
 
     countries = [('IND','INDIA'),('CHN','CHINA')]
@@ -32,12 +34,8 @@ class Search(forms.Form):
 
 class PostForm(forms.ModelForm):
 
+    content = forms.CharField(widget=TinyMCE(attrs={'cols': 100, 'rows': 40}))
+
     class Meta:
         model = Post
-        fields = ['title','content','status','category','images','author']
-
-    # def clean_images(self):
-    #     image = self.cleaned_data.get('images')
-    #     if image.size > 4000000:
-    #         raise forms.ValidationError('size must be less than 4mb',code="size")
-    #     return image
+        fields = ['title','content','date','author_name','status','category','images']

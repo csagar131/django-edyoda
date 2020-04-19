@@ -7,6 +7,6 @@ urlpatterns = [
     path('',IndexView.as_view()),
     path('contact',ContactFormView.as_view()),
     path('posts',PostModelFormView.as_view()),
-    path('posts/<slug:slug>',PostFormUpdateView.as_view()),
+    path('posts/<slug:slug>',PostFormUpdateView.as_view(),name = 'update-post'),
     path('<slug:slug>',BlogDetailView.as_view(), name = 'post-detail'),
 ]
