@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path,include
-from blog.views import IndexView,CategoryIndexView,BlogDetailView,ContactFormView,PostModelFormView,PostFormUpdateView
+from blog.views import IndexView,CategoryIndexView,BlogDetailView,ContactFormView,PostModelFormView,PostFormUpdateView,PostDeleteView
 
 
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     path('posts',PostModelFormView.as_view()),
     path('posts/<slug:slug>',PostFormUpdateView.as_view(),name = 'update-post'),
     path('<slug:slug>',BlogDetailView.as_view(), name = 'post-detail'),
+    path('delete/<slug:slug>',PostDeleteView.as_view(),name='delete-post'),
 ]

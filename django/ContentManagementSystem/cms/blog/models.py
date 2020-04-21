@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from tinymce import models as tinymce_models
+from accounts.models import User
 # Create your models here.
 
 class Category(models.Model):
@@ -22,9 +24,9 @@ class Post(models.Model):
     ]
     title = models.CharField(max_length=256)
     slug = models.SlugField(unique = True,blank = True)
-    content = models.TextField()
+    content = tinymce_models.HTMLField()
     date =  models.CharField(max_length=30)
-    author_name = models.CharField(max_length=50)
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
     status = models.CharField(max_length=1,choices=statuses)
     category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name="posts")
     images = models.ImageField(upload_to="blog/post",blank=True)

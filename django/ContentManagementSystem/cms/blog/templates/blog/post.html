@@ -8,8 +8,6 @@
 {{ form.media }}
 <link href="{% static 'blog/css/post-update.css' %}" rel="stylesheet">
 {% endblock %}
-
-
 {% block content %}
 <div class="login">
     <h1>Edit Post</h1>
@@ -22,6 +20,7 @@
             <div id="content-sec">
                 <p>{{form.content.label_tag}}</p>
                 <textarea>{{form.content}}</textarea>
+                <p>{{form.content.errors}}</p>
             </div>
             <div class="form-ele-flex">
                 <div>
@@ -29,8 +28,8 @@
                     <p>{{form.date}}</p>
                 </div>
                 <div>
-                    <p>{{form.author_name.label_tag}}</p>
-                    <p>{{form.author_name}}</p>
+                    <p>{{form.author.label_tag}}</p>
+                    <p>{{form.author}}</p>
                 </div>
 
             </div>

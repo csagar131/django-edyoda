@@ -14,18 +14,16 @@
     <br/>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {% for f in form %}
-            <span style="color:black">{{f.label_tag}}</span>
-            <span>{{f}}</span>
-            {% endfor %}
-            <br/>
-            <br/>
+            <p>{{form.errors}}</p>
+            <p style="color:#000000">{{form.username.label_tag}}</p>
+            <p>{{form.username}}<p>
+            <p style="color:#000000">{{form.password.label_tag}}</p>
+            <p>{{form.password}}<p>
             <a href="{% url 'password_reset' %}" style="color: whitesmoke;"> &emsp;&emsp; &emsp;&emsp; &emsp;Forgot Password</a>
             <br/>
             <br/>
             <input type="submit" value="Login">
         </form>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 </div>
 
 {% endblock %}

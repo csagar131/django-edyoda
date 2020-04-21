@@ -33,9 +33,9 @@ h1{
     color: aqua;
 }
 
-.helptext{
+/* .helptext{
     display: none;
-}
+} */
 
 footer{
     position : fixed;
@@ -47,9 +47,9 @@ footer{
         width: 100%;
 }
 
-ul{
+/* ul{
     display: none;
-}
+} */
 
 
 .login { 

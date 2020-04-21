@@ -5,11 +5,15 @@ from django.contrib.auth.models import Group
 
 
 @receiver(post_save,sender = User)
-def create_user_profile(sender,instance,**kwargs):
+def create_user_profile(sender,created,instance,**kwargs):
+    usr_group = Group.objects.get(name = "User")
+    auth_group = Group.objects.get(name = "Author")
+    
+    if created:
+        instance.groups.add(usr_group)
+
     if instance.is_author:
-        author = Group.objects.get(name = "Author")
-        user = Group.objects.get(name = 'User')
-        instance.groups.add(author,user)
+        instance.groups.add(auth_group,usr_group)
 
 
         

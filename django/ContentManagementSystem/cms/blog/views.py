@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from blog.models import Post,Category
 from blog.forms import ContactForm,PostForm,Search
-from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView
+from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView,DeleteView
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 
@@ -65,6 +65,9 @@ class PostFormUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     template_name = 'blog/post.html'
 
 
-
-
+class PostDeleteView(PermissionRequiredMixin,DeleteView):
+    permission_required ='blog.delete_post'
+    model = Post
+    template_name = 'blog/delete_post.html'
+    success_url = '/stories'
 

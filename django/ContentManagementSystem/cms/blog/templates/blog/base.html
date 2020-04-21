@@ -2,9 +2,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css2?family=Volkhov:ital@1&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,900|Roboto&display=swap" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
         <script src="https://kit.fontawesome.com/48e95db22f.js" crossorigin="anonymous"></script>
+        
         <title>
             Edyoda Stories Demo 
         </title>
@@ -30,13 +32,15 @@
               <div id="topbar-right">
                   {% if user.is_authenticated%}
                   <img id="user-img-wrap" src="{{user.image.url}}" alt="" width="25px" height="25px">
-                    <span><b><a href="{{user.get_absolute_url}}">welcome, {{user.get_username}}</a></b></span>
-                    <a href="{% url 'logout' %}"><button class="btn">Logout</button></a>
+                    <span><b><a href="{{user.get_absolute_url}}" style="font-family: 'Volkhov', serif;">welcome, {{user.get_username}}</a></b></span>
+                    &ensp;<a href="{% url 'logout' %}"><button class="btn">Logout</button></a>
                   {% else %}
                   <img id="user-img-wrap" src="https://img.icons8.com/plasticine/2x/user.png" alt="" width="25px" height="25px">
-                    <span><b>hello,User</b></span>
+                    <span><b style="font-family: 'Volkhov', serif;">New,user</b></span>
+                    <a href="{% url 'signup' %}"><button class="btn">Sign Up</button></a>&ensp;
+                    <span style="font-family: 'Volkhov', serif;">or</span>
                     <a href="{% url 'login' %}"><button class="btn">Login</button></a>
-                    <a href="{% url 'signup' %}"><button class="btn">Sign Up</button></a>
+                    
                   {% endif %} 
               </div>
             </div>
