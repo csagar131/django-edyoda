@@ -6,7 +6,7 @@ from blog.views import IndexView,CategoryIndexView,BlogDetailView,ContactFormVie
 urlpatterns = [
     path('',IndexView.as_view()),
     path('contact',ContactFormView.as_view()),
-    path('posts',PostModelFormView.as_view()),
+    path('posts',PostModelFormView.as_view(),name = 'new-post'),
     path('posts/<slug:slug>',PostFormUpdateView.as_view(),name = 'update-post'),
     path('<slug:slug>',BlogDetailView.as_view(), name = 'post-detail'),
     path('delete/<slug:slug>',PostDeleteView.as_view(),name='delete-post'),

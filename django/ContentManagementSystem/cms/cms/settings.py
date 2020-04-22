@@ -134,11 +134,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTH_USER_MODEL = 'accounts.User'
 
-TINYMCE_JS_URL = os.path.join(MEDIA_URL,"\\tinymce\js\\tinymce\\tinymce.min.js")
-TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "\\tinymce")
+TINYMCE_JS_URL = os.path.join(MEDIA_URL,"tinymce/js/tinymce/tinymce.min.js")
+TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "tinymce")
 
-print("--------------")
-print(TINYMCE_JS_URL)
 
 TINYMCE_DEFAULT_CONFIG = {
    'height':'500',

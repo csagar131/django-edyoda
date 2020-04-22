@@ -14,6 +14,8 @@ def create_user_profile(sender,created,instance,**kwargs):
 
     if instance.is_author:
         instance.groups.add(auth_group,usr_group)
+    else:
+        instance.groups.remove(auth_group)
 
 
         

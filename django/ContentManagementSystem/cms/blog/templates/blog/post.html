@@ -3,10 +3,15 @@
 
 
 {% block extra_head %}
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>tinymce.init({selector:'textarea'});</script>
 {{ form.media }}
 <link href="{% static 'blog/css/post-update.css' %}" rel="stylesheet">
+<script type="text/javascript">
+    tinyMCE.init({
+        theme: "advanced",
+        theme_advanced_default_foreground_color: "#FFFFFF",
+        body_class: "mceBlackBody"
+    });
+    </script>
 {% endblock %}
 {% block content %}
 <div class="login">
@@ -15,11 +20,11 @@
             {% csrf_token %}
             <div class="form-ele">
                 <p>{{form.title.label_tag}}</p>
-                <p id="title">{{form.title}}</p>
+                <p style="width: 500px;">{{form.title}}</p>
             </div>
             <div id="content-sec">
                 <p>{{form.content.label_tag}}</p>
-                <textarea>{{form.content}}</textarea>
+                <p>{{form.content | safe}}</p>
                 <p>{{form.content.errors}}</p>
             </div>
             <div class="form-ele-flex">

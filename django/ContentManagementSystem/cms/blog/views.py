@@ -4,7 +4,7 @@ from blog.models import Post,Category
 from blog.forms import ContactForm,PostForm,Search
 from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView,DeleteView
 from django.utils.text import slugify
-from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin
 
 
 class IndexView(ListView):
@@ -57,17 +57,25 @@ class PostModelFormView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     form_class = PostForm
 
 
-class PostFormUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+class PostFormUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin,UpdateView):
     login_url ='login'
     permission_required = 'blog.change_post'
     model = Post
     form_class = PostForm
     template_name = 'blog/post.html'
 
+    def test_func(self,*args,**kwargs):
+        author = Post.objects.get(slug=self.kwargs['slug']).author
+        return author == self.request.user
 
-class PostDeleteView(PermissionRequiredMixin,DeleteView):
+
+
+class PostDeleteView(PermissionRequiredMixin,UserPassesTestMixin,DeleteView):
     permission_required ='blog.delete_post'
     model = Post
     template_name = 'blog/delete_post.html'
     success_url = '/stories'
 
+    def test_func(self,*args,**kwargs):
+        author = Post.objects.get(slug=self.kwargs['slug']).author
+        return author == self.request.user

@@ -34,7 +34,8 @@ class Search(forms.Form):
 
 class PostForm(forms.ModelForm):
 
-    content = forms.CharField(widget=TinyMCE(attrs={'cols': 100, 'rows': 40}))
+    title = forms.CharField(widget=forms.TextInput(attrs={'id':'title'}))
+    content = forms.CharField(widget=TinyMCE(attrs={'cols': 100, 'rows': 40,'id' :'content'}))
 
     class Meta:
         model = Post

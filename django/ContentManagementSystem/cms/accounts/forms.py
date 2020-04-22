@@ -6,7 +6,6 @@ from accounts.models import User
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
-    is_author = forms.BooleanField()
     class Meta:
         model = User
         fields = ('first_name','last_name','username','email','image','password1','password2','is_author')
