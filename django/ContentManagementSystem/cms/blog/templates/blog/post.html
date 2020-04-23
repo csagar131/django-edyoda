@@ -6,13 +6,14 @@
 {{ form.media }}
 <link href="{% static 'blog/css/post-update.css' %}" rel="stylesheet">
 <script type="text/javascript">
-    tinyMCE.init({
-        theme: "advanced",
-        theme_advanced_default_foreground_color: "#FFFFFF",
-        body_class: "mceBlackBody"
-    });
-    </script>
+tinymce.init({
+   selector: 'textarea',
+   content_css : '/static/blog/css/post-update.css',
+   content_style: 'html { background-color : #382B38; color:white; }'
+});
+</script>
 {% endblock %}
+
 {% block content %}
 <div class="login">
     <h1>Edit Post</h1>
