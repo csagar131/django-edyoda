@@ -19,21 +19,20 @@ tinymce.init({
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-ele">
-                <p>{{form.title.label_tag}}</p>
+                <p class="label-color">{{form.title.label_tag}}</p>
                 <p style="width: 500px;">{{form.title}}</p>
             </div>
             <div id="content-sec">
-                <p>{{form.content.label_tag}}</p>
+                <p class="label-color">{{form.content.label_tag}}</p>
                 <p>{{form.content | safe}}</p>
-                <p>{{form.content.errors}}</p>
             </div>
             <div class="form-ele-flex">
                 <div>
-                    <p>{{form.date.label_tag}}</p>
+                    <p class="label-color">{{form.date.label_tag}}</p>
                     <p>{{form.date}}</p>
                 </div>
                 <div>
-                    <p>{{form.author.label_tag}}</p>
+                    <p class="label-color">{{form.author.label_tag}}</p>
                     <p>{{form.author}}</p>
                 </div>
 
@@ -41,18 +40,18 @@ tinymce.init({
             <div id="below-content">
             <div class="form-ele-flex">
                 <div>
-                    <p>{{form.status.label_tag}}</p>
+                    <p class="label-color">{{form.status.label_tag}}</p>
                     <p>{{form.status}}</p>
                 </div>
                 <div>
-                    <p>{{form.category.label_tag}}</p>
+                    <p class="label-color">{{form.category.label_tag}}</p>
                     <p>{{form.category}}</p>
                 </div>
 
             </div>
 
             <div class="form-ele">
-                <p>{{form.images.label_tag}}</p>
+                <p class="label-color">{{form.images.label_tag}}</p>
                 <p>{{form.images}}</p>
             </div>
             <br/>

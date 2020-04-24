@@ -43,6 +43,9 @@ ul{
     display: none;
 }
 
+.label-color{
+    color:white;
+}
 
 .login { 
     margin: 50px auto;

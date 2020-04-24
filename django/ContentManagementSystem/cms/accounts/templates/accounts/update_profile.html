@@ -14,32 +14,32 @@
                 {% csrf_token %}
                 <div class="two-flex">
                     <div>
-                    <p>{{form.first_name.label_tag}}</p>
+                    <p class="label-color">{{form.first_name.label_tag}}</p>
                     <p>{{form.first_name}}</p>
                     </div>
                     <div>
-                    <p>{{form.last_name.label_tag}}</p>
+                    <p class="label-color">{{form.last_name.label_tag}}</p>
                     <p>{{form.last_name}}</p>
                     </div>
                 </div>
 
                 <div class="two-flex">
                     <div>
-                    <p>{{form.email.label_tag}}</p>
+                    <p class="label-color">{{form.email.label_tag}}</p>
                     <p>{{form.email}}</p>
                     </div>
                     <div>
-                    <p>{{form.image.label_tag}}</p>
+                    <p class="label-color">{{form.image.label_tag}}</p>
                     <p>{{form.image}}</p>
                     </div>
                 </div>
                 <div>
-                    <p>{{form.bio.label_tag}}</p>
+                    <p class="label-color">{{form.bio.label_tag}}</p>
                     <p>{{form.bio}}</p>
                 </div>
 
                 <div>
-                    <p class="is_author">{{form.is_author.label_tag}}</p>
+                    <p class="is_author label-color">{{form.is_author.label_tag}}</p>
                     <p class="is_author">{{form.is_author}}</p>
                 </div>
                 <br/>

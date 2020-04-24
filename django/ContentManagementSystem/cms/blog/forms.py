@@ -2,6 +2,7 @@ from django import forms
 import re
 from blog.models import Post
 from tinymce.widgets import TinyMCE
+from accounts.models import User
 
 class ContactForm(forms.Form):
 
@@ -9,7 +10,6 @@ class ContactForm(forms.Form):
     name = forms.CharField(max_length=50)
     email = forms.EmailField(required = False)
     phone = forms.RegexField(regex='^[6-9][0-9]{9}$',required = False)
-    password = forms.CharField(max_length=50, widget = forms.PasswordInput)
     message = forms.CharField(max_length=500,widget=forms.Textarea)
     country = forms.ChoiceField(choices=countries)
 
@@ -22,12 +22,6 @@ class ContactForm(forms.Form):
         if email == "" and phone == "":
             raise forms.ValidationError("atleast email or password should be provided")
 
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
-        m = re.search('[A-Z]',password)
-        if not m:
-            raise forms.ValidationError("password should contains atleast 1 uppercase")
-        return password
 
 class Search(forms.Form):
     search_blog = forms.CharField(max_length=50,widget=forms.TextInput(attrs={'id':'searchbar'}))
@@ -36,7 +30,19 @@ class PostForm(forms.ModelForm):
 
     title = forms.CharField(widget=forms.TextInput(attrs={'id':'title'}))
     content = forms.CharField(widget=TinyMCE(attrs={'cols': 100, 'rows': 40,'id' :'content'}))
+    # author = forms.CharField(disabled=True)
 
     class Meta:
         model = Post
         fields = ['title','content','date','author','status','category','images']
+
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        user = User.objects.get(username= self.request.user)
+        kwargs.update({'initial':{'author': user}})
+        return kwargs 
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

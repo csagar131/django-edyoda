@@ -28,9 +28,9 @@ h1{
     color: aqua;
 }
 
-/* .helptext{
-    display: none;
-} */
+.label-color{
+    color: white;
+}
 
 footer{
     position : fixed;

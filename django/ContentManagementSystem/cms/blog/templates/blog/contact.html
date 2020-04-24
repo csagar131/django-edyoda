@@ -1,10 +1,30 @@
 {% extends 'blog/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link href="{% static 'accounts/css/logsignin.css' %}" rel="stylesheet">
+{% endblock %}
+
 
 {% block content %}
-    <form method="POST">
-        {{form.as_p}}
-        {% csrf_token %}
-        <input type="submit" name="ContactUs">
-    </form>
+<div class="login">
+    <h1>Contact Us</h1>
+       <div id="form-ele">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for f in form %}
+                <span class="label-color">{{f.label_tag}}</span>
+                <span>{{f}}</span>
+                <span style="color: whitesmoke;">{{f.errors}}</span>
+                {% endfor %}
+                <br/>
+                <br/>
+                <input type="submit" value="Submit">
+                <br/>
+                <br/>
+            </form>
+        </div>
+        <a href="/stories"><button>Not Now</button></a>
+</div>
 
 {% endblock %}

@@ -5,6 +5,7 @@ from blog.forms import ContactForm,PostForm,Search
 from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView,DeleteView
 from django.utils.text import slugify
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin
+from accounts.models import User
 
 
 class IndexView(ListView):
@@ -55,6 +56,16 @@ class PostModelFormView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     permission_required = 'blog.add_post'
     template_name =  'blog/post.html'
     form_class = PostForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        user = User.objects.get(username= self.request.user)
+        kwargs.update({'initial':{'author': user}})
+        return kwargs 
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class PostFormUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UserPassesTestMixin,UpdateView):

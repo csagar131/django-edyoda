@@ -58,6 +58,11 @@ body{
     border-radius: 20px;
 }
 
+.toptxt{
+    font-family: 'Girassol', cursive;
+    color : whitesmoke;
+}
+
 .btn{
     border:1px solid #0285FF;
     border-radius:15px;
@@ -123,7 +128,8 @@ body{
     .explore-categories{
         margin-left: 72px;
         font-size: 14px;
-        font-family: 'Pacifico', cursive;
+        color : white;
+        font-family: 'Girassol', cursive;
         letter-spacing: .9px;
         font-weight: 500;
 

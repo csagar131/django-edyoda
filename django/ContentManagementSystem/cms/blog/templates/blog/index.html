@@ -4,11 +4,6 @@
 <div class="main-content">
     <div class="sub-content">
       <h1>Trending Posts</h1>
-          <!-- <form method="POST" id="searchbar">
-            {% csrf_token %}
-              {{ form }}
-            <input type="submit" value="Search"/>
-          </form> -->
             <div id="filter-by-category">
                 <img src="{% static 'blog/images/filter.png' %}" alt="filter-image" widht="25px" height="25px"/>
                 <p style="margin: 13.6px 0px 13.6px 6.8px;">Filter by Category</p>
@@ -28,7 +23,7 @@
         <img src="{{post.images.url}}" class="card-img"  alt="fresh grad" width ="300px" height="200px"/>
         <div class="discription">
         <h2><span class="heading">{{post.title|truncatewords:5}}</span></h2>
-        <h4 style="margin-top:8px; margin-bottom:2px;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> {{post.author_name}}</span>  |<span style="font-family: 'Roboto';font-size: 15px;">{{post.date}}</span></span></h4>
+        <h4 style="margin-top:8px; margin-bottom:2px;"><span class="author"><span style="color:#0096ff; font-family: 'Raleway',sans-serif;"> {{post.author}}</span>  |<span style="font-family: 'Roboto';font-size: 15px;">{{post.date}}</span></span></h4>
           <p class="para">
             {{post.content|truncatewords:20}} 
           </p>
