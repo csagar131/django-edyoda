@@ -19,12 +19,11 @@
             <p>{{form.username}}<p>
             <p style="color:#000000" class="label-color">{{form.password.label_tag}}</p>
             <p>{{form.password}}<p>
-            <a href="{% url 'password_reset' %}" style="color: whitesmoke;"> &emsp;&emsp; &emsp;&emsp; &emsp;Forgot Password</a>
+            <a href="{% url 'password_reset' %}" style="color: black;"> &emsp;&emsp; &emsp;&emsp; &emsp;Forgot Password</a>
             <br/>
             <br/>
-            <input type="submit" value="Login">
+           <a><button type="submit">Login</button></a>
         </form>
-        <br/><br/><br/><br/><br/><br/><br/><br/>
 </div>
 
 {% endblock %}
