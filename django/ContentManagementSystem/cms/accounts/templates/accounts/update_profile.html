@@ -44,16 +44,17 @@
                 </div>
                     <br/>
                     <br/>
-                    <a><button type="submit">Update</button></a>
-                <br/>
-                <br/>
+                    <div class="btns">
+                        <a><button type="submit">Update</button></a>
+                    </div>
             </form>
-            <!-- <div class="login">
-                <div class="btn-flex">
-                    <a href="{% url 'password_change' %}"><button class="btn-down">Change Password</button></a>
-                    <a href="/stories"><button class="btn-down">Not Now</button></a>
+            <div class='login'>
+                <div class="btns">
+                    <a href="{% url 'password_change' %}" style="margin-right: 400px;"><button>Change Password</button></a>
+                    <a href="/stories" style="margin-left: 400px;"><button>Not Now</button></a>
+
                 </div>
-            </div> -->
+            </div>
 </div>
 
 {% endblock %}
