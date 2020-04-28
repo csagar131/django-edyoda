@@ -86,6 +86,10 @@ body{
         flex-direction: column;
     }
 
+    #user-image-wrapper img{
+        border-radius: 70px;
+    }
+
     .card-bottom-button-section{
         padding:0px 96px 32px;
     }

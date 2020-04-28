@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.urls import path,include
 from blog.views import IndexView,CategoryIndexView,BlogDetailView,ContactFormView,PostModelFormView,PostFormUpdateView,PostDeleteView
 
-
 urlpatterns = [
     path('',IndexView.as_view()),
     path('contactus',ContactFormView.as_view(),name = 'contact-us'),

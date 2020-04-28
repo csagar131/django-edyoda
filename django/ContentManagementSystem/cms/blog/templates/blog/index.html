@@ -15,6 +15,13 @@
               {% endfor %}
             </div>
 
+      <div id="search-bar">
+        <form method="POST">
+            {% csrf_token %}
+            <span>{{form.search_blog}}</span>
+           <input type="submit" id="find-btn" value="Find" style="display: inline;"/>
+        </form>
+      </div>
 
 <div class="the-cards-blocks">
     {% for post in posts %}

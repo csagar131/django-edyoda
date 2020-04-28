@@ -8,7 +8,7 @@ from accounts.models import User
 class UserCreateView(CreateView):
     form_class = SignUpForm
     template_name = 'accounts/signup.html'
-    success_url = "/stories"
+    success_url = "login"
 
 
 class UpdateProfileView(UpdateView):

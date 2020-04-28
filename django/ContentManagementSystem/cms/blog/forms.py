@@ -30,7 +30,6 @@ class PostForm(forms.ModelForm):
 
     title = forms.CharField(widget=forms.TextInput(attrs={'id':'title'}))
     content = forms.CharField(widget=TinyMCE(attrs={'cols': 100, 'rows': 40,'id' :'content'}))
-    # author = forms.CharField(disabled=True)
 
     class Meta:
         model = Post

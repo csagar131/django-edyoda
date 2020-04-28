@@ -29,6 +29,11 @@
                     <span>
                         <i class="fas fa-caret-down"></i>
                     </span>
+                    <div class="dropdown-content">
+                        {% for cat in category %}
+                            <a href="{% url 'category' cat.slug %}">{{cat.name}}</a>
+                        {% endfor %}  
+                    </div>
                 </div>
               </div>
               <div id="topbar-right">

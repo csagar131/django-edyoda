@@ -18,6 +18,22 @@ class IndexView(ListView):
         context = super().get_context_data(**kwargs)
         context['category'] = Category.objects.all()
         return context
+
+    def get(self, request, *args, **kwargs):
+        form = Search()
+        posts = Post.objects.filter(status = "P")
+        category = Category.objects.all()
+        return render(request,'blog/index.html',context={'form':form,'category':category,'posts':posts})
+
+
+    def post(self, request, *args, **kwargs):
+        form = Search(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            posts = Post.objects.filter(title__contains = form.cleaned_data['search_blog'])
+            category = Category.objects.all()
+            return render(request,'blog/index.html',context={'form':form,'category':category,'posts':posts})
+        return render(request,'blog/index.html',context={'form':form,'category':category,'posts':posts})
         
 
 class CategoryIndexView(ListView):
@@ -43,7 +59,7 @@ class BlogDetailView(LoginRequiredMixin,DetailView):
 
 class ContactFormView(FormView):
     form_class = ContactForm
-    success_url = 'contact'
+    success_url = 'contactus'
     template_name = 'blog/contact.html'
 
     def form_valid(self,form):
@@ -90,3 +106,10 @@ class PostDeleteView(PermissionRequiredMixin,UserPassesTestMixin,DeleteView):
     def test_func(self,*args,**kwargs):
         author = Post.objects.get(slug=self.kwargs['slug']).author
         return author == self.request.user
+
+
+
+        
+
+
+
