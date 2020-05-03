@@ -1,22 +1,25 @@
 from rest_framework import serializers
-from blog.models import Category
+from blog.models import Category,Post
 
 
-class CategorySerializer(serializers.Serializer):
-    name = serializers.CharField()
-    description = serializers.CharField()
+class CategorySerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Category
+        fields = ['id','name']
+
+   
+
+
+class PostSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+
+    class Meta:
+        model = Post
+        fields = ['id','title','content','category','status']
 
     def create(self,validated_data):
-        print(validated_data)
-        return Category.objects.create(**validated_data)
-
-
-class PostSerializer(serializers.Serializer):
-    title = serializers.CharField(max_length=30)
-    content = serializers.CharField()
-    status = serializers.CharField()
-    category = serializers.PrimaryKeyRelatedField(read_only = True)
-
+        return Post.objects.create(**validated_data)
 
 
 
