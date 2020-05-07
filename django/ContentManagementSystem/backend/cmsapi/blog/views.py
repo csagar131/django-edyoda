@@ -5,6 +5,20 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from blog.serializers import PostSerializer,CategorySerializer
 from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+class PostModelViewSet(ModelViewSet):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    # authenication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
+
+
+
+
+
 
 # class PostAPIView(APIView):
 #     def get(self,request,*args,**kwargs):
@@ -22,14 +36,14 @@ from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIVi
 #         return Response(ser_obj.errors,status = status.HTTP_400_BAD_REQUEST)
 
 
-class PostListCreateAPIVIew(ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+# class PostListCreateAPIVIew(ListCreateAPIView):
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
 
 
-class PostRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+# class PostRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
 
 
 
