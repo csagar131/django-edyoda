@@ -1,5 +1,5 @@
 from django.db import models
-
+from userinfo.models import User
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -16,6 +16,7 @@ class Post(models.Model):
     status = models.CharField(max_length=1,choices = statuses)
     category = models.ForeignKey(Category,on_delete = models.CASCADE)
     image = models.ImageField(upload_to = 'blog/',blank = True)
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
 
 
     def __str__(self):

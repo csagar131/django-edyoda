@@ -7,13 +7,13 @@ from blog.serializers import PostSerializer,CategorySerializer
 from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly,DjangoModelPermissions
 
 class PostModelViewSet(ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    # authenication_classes = [TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authenication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly,DjangoModelPermissions]
 
 
 

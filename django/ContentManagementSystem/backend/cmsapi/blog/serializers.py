@@ -15,7 +15,14 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id','title','content','category','status','category_name','image']
+        fields = ['id','title','content','category','status','category_name','image','author']
+
+    def validate_author(self,author):
+        if self.context['request'].user == author:
+            return author
+        return serializers.ValidationError("you are not authorized to create post")
+        
+
 
 
     def get_category_name(self,obj):
