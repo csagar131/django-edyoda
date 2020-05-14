@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'userprofile/css/login.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+<div id="loginform">
+    <form method="POST">
+        <span>{{form.username.label_tag}}</span>
+        <span>{{form.username}}</span>
+        <span>{{form.password.label_tag}}</span>
+        <span>{{form.password}}</span>
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+
+{% endblock %}
