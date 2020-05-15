@@ -124,5 +124,5 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'userprofile.User'
 
-LOGIN_REDIRECT_URL = "index" 
+LOGIN_REDIRECT_URL = "people" 
 LOGOUT_REDIRECT_URL = "index"

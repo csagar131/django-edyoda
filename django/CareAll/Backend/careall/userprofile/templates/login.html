@@ -8,15 +8,20 @@
 {% block content %}
 
 
-<div id="loginform">
-    <form method="POST">
-        <span>{{form.username.label_tag}}</span>
+<div id="loginbox">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGK_M4vdJQq1sdX4LDyU7NvRdM9eY4JZJYM0k9Gpse2YknSJTV&usqp=CAU" class="avatar">
+      <h1>Login Here</h1>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{form.username.label_tag}}</p>
         <span>{{form.username}}</span>
-        <span>{{form.password.label_tag}}</span>
+        <p>{{form.password.label_tag}}</p>
         <span>{{form.password}}</span>
-        <input type="submit" value="Login">
-    </form>
-</div>
+        <input type="submit" name="">
+        <a href="#">Forgot Password</a>
+        <a href="#">Reset Password</a>
+      </form>
+  </div>
 
 
 {% endblock %}

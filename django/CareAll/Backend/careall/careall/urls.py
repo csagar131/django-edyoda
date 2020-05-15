@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('careall',indexView,name = 'index'),
     path('careall/',include('userprofile.urls')),
+    path('careall/',include('caremainapp.urls')),
 ]

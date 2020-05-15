@@ -1,0 +1,43 @@
+nav{
+	top: 0;
+	position: fixed;
+}
+
+.main-body-content{
+    margin-top: 100px;
+}
+
+#card-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.card-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 800px;
+    height: 140px;
+    align-items: center;
+    margin: 10px auto;
+    padding: 0px 5px;
+    background-color: whitesmoke;
+}
+
+.image-wrapper{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#details{
+    display: flex;
+    flex-direction: column;
+    margin-left: 120px;
+}
+
+#btn-view-profile{
+    height: 40px;
+}

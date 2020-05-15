@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'caremain/css/details.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="giant-card">
+    <div class=giant-card-item>
+    <img src="https://edyoda.s3.amazonaws.com/media/blog-images/learn-artificial-intelligence_E1bep5u.jpeg" alt="aiimage" id="card-image" width="760px" height="437px"/>
+        <div class="card-discription-heading">
+            <h6>Name:{{usr.get_first_name}} {{usr.get_last_name}}</h6>
+            <h6>age: 21</h6>
+            <h6>Gender : Male</h6>
+            <h6>Email:srj@gmail.com</h6>
+            <h6>Address: New Orlands,Canada,US</h6>
+            <h6>Phone:8218184861</h6>
+            </div>
+            <div class="card-bottom-section">
+                <div class="card-bottom-section-content">
+                   <h4 id="revhead">Reviews</h4>
+                </div>
+                <div class="card-bottom-button-section">
+                  {% for rev in review %}
+                    <h6>{{rev.review_by.get_first_name}} {{rev.review_by.get_last_name}}</h6>
+                    <p class="p-reviews">
+                        {{rev.reviews}}
+                    </p>
+                    <br/>
+                  {% endfor %}
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        <h5>Add you review</h5>
+                        {{form.review}}
+                        <button class="btn"><input type="submit" value="Submit" style="background-color:#26A69A ;"></button>
+                    </form>
+                    <br/>
+                    <br/>
+                    <button class="btn">Approve</button>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

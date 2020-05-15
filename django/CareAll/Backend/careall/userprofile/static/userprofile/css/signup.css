@@ -9,8 +9,8 @@ body{
 
 
 #loginbox{
-	width: 320px;
-	height: 500px;
+	width: 700px;
+	height: 1100px;
 	background: #000;
 	color: #fff;
 	box-sizing: border-box;
@@ -48,7 +48,7 @@ h1{
 
 }
 
-#loginbox span input[type="text"], input[type="password"]
+#loginbox span input[type="text"], input[type="password"], input[type="email"], input[type="number"]
 {
 	border: none;
 	border-bottom: 1px solid #fff;
@@ -88,3 +88,11 @@ h1{
 #loginbox a:hover{
 	color: #ffc107;
 }
+
+
+
+@media screen and (max-width: 600px) {
+    #loginbox {
+      width: 350px;  }
+  }
+  

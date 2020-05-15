@@ -11,6 +11,6 @@ class UserListView(ListView):
 class UserCreateFormView(CreateView):
     form_class = SignUpForm
     template_name = 'signup.html'
-    success_url = 'login.html'
+    success_url = 'login'
 
 

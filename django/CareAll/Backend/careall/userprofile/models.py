@@ -5,13 +5,22 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
+    genders = [
+        ("M","MALE"),("F","FEMALE"),
+    ]
+
     email = models.EmailField()
-    is_elder = models.BooleanField(blank = True,default=False)
-    bio = models.TextField(blank = True)
-    rating = models.DecimalField(decimal_places=1,max_digits=2,blank = True,null = True)
+    age = models.IntegerField(blank = True)
+    gender = models.CharField(max_length=1,choices = genders,default = 'M')
+    address = models.CharField(max_length=255,blank = True)
+    Phone = models.IntegerField()
+    is_elder = models.BooleanField(blank = True)
 
 
-class Reviews(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    reviews = models.TextField()
+    def get_first_name(self):
+        return self.first_name
+
+    def get_last_name(self):
+        return self.last_name
+
 
