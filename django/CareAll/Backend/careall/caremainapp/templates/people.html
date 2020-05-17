@@ -10,23 +10,41 @@
 
 <div class="main-body-content">
 
-    <h2>People You May Like</h2>
+    <!-- <h2>People You May Like</h2> -->
 
-    <div id="card-list">
-      {% for usr in userlist %}
-        <div class="card-main">
-            <div class="image-wrapper">
-                <img src="data:image/jpeg;base64,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" alt="user">
-            </div>
-            <div id="details">
-                <span>Name:{{usr.get_first_name}} {{usr.get_last_name}}</span>
-                <span>Age:21</span>
-                <span>Rating:4.5</span>
-            </div>
-            <a href="{% url 'detail' usr.id %}"><button id="btn-view-profile">View Profile</button></a>
-        </div>
-      {% endfor %}
-    </div>
+    
+    {% for usr in userlist %}
+    <aside class="profile-card">
+      <header>
+        <!-- here’s the avatar -->
+        <a href="{{usr.image.url}}">
+          <img src="{{usr.image.url}}">
+        </a>
+    
+        <!-- the username -->
+        <h1>{{usr.get_first_name}} {{usr.get_last_name}}</h1>
+        <!-- and role or location -->
+        <br/>
+        <h2>Age:{{usr.age}}</h2>
+        <br/>
+        <h2>Rating:4.5</h2>
+        
+      </header>
+      
+      <!-- bit of a bio; who are you? -->
+      <!-- <div class="profile-bio">
+        
+        <p>Specialties are Creative UI, HTML5, CSS3, Semantic Web, Responsive Layouts, Web Standards Compliance, Performance Optimization, Cross Device Troubleshooting.</p>
+        
+      </div> -->
+      <br/>
+
+      <div>
+        <a href="{% url 'detail' usr.id %}"><button class="btn-large waves-light">View Full Profile</button><a href="{% url 'detail' usr.id %}"></a>
+      </div>
+    </aside>
+    <hr>
+    {% endfor %}
 
 </div>
 

@@ -10,6 +10,7 @@ class User(AbstractUser):
     ]
 
     email = models.EmailField()
+    image = models.ImageField(upload_to='profile/',blank = True)
     age = models.IntegerField(blank = True)
     gender = models.CharField(max_length=1,choices = genders,default = 'M')
     address = models.CharField(max_length=255,blank = True)

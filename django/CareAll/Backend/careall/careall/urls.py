@@ -25,4 +25,4 @@ urlpatterns = [
     path('careall',indexView,name = 'index'),
     path('careall/',include('userprofile.urls')),
     path('careall/',include('caremainapp.urls')),
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

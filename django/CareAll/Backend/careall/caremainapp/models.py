@@ -11,3 +11,10 @@ class Reviews(models.Model):
 class Rating(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     rating = models.DecimalField(decimal_places=1,max_digits=2,blank = True,null = True)
+
+
+class CareRequest(models.Model):
+    request_by = models.ForeignKey(User,on_delete=models.CASCADE,related_name="req_by")
+    request_to = models.OneToOneField(User,on_delete=models.CASCADE)
+    req_status = models.BooleanField(blank = True)
+    appr_status = models.BooleanField(blank = True)
