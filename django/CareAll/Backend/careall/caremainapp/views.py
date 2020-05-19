@@ -1,9 +1,11 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView,DeleteView
 from userprofile.models import User
 from caremainapp.forms import ReviewForm
 from django.views import View
 from caremainapp.models import Reviews,CareRequest
+
 
 # Create your views here.
 def indexView(request):
@@ -51,10 +53,39 @@ class RequestDetailView(View):
         form = ReviewForm()
         usr = User.objects.get(id = id)
         review = usr.ureviews.all()
-        if not CareRequest.objects.filter(request_by = request.user,request_to= usr).exists():
-            req_object = CareRequest.objects.create(request_by = request.user,request_to= usr,req_status = True,appr_status = False)
-            req_object.save()
+        if len(CareRequest.objects.filter(request_by = request.user).filter(appr_status = True)) <= 3:
+            if not CareRequest.objects.filter(request_by = request.user,request_to= usr).exists():
+                req_object = CareRequest.objects.create(request_by = request.user,request_to= usr,req_status = True,appr_status = False)
+                req_object.save()
+        else:
+            return HttpResponse("You have Exceeded the Care Limit of 4 person")
         return render(request,'reqdetails.html',context={'form':form,'review':review,'usr':usr})
+
+
+
+class YoungerRequestView(View):
+    def get(self,request,*args,**kwargs):
+        req_object = CareRequest.objects.filter(request_to = request.user).filter(appr_status = False)
+        return render(request,'request.html',context={'requests':req_object})
+
+
+class ApproveRequestView(View):
+    def get(self,request,id,*args,**kwargs):
+        usr = User.objects.get(id = id)
+        review = usr.ureviews.all()
+        return render(request,'approvereq.html',context={'review':review,'usr':usr})
+
+
+class ApproveRequestSuccessView(View):
+    def get(self,request,id,*args,**kwargs):
+        if len(CareRequest.objects.filter(request_to = request.user).filter(appr_status = True)) > 0:
+            return HttpResponse("Sorry,You are already being taken care can't accept another request")
+            
+        usr = User.objects.get(id = id)
+        review = usr.ureviews.all()
+        req_obj = CareRequest.objects.filter(request_by = usr).filter(request_to = request.user)
+        req_obj.update(request_by = usr,request_to = request.user,req_status = False,appr_status = True)
+        return render(request,'approvereqsuccess.html',context={'review':review,'usr':usr})
 
 
 

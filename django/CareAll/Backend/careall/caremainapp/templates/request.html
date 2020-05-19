@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'caremain/css/request.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+  <div class="request-content">
+    <h3>Your Requests</h3>
+    <div class="request-list">
+
+      {% for request in requests %}
+        <div id="request-card">
+            <img src="{{request.request_by.image.url}}" width="130px" height="130px">
+            <div id="req-user">
+                <h6>Name:{{request.request_by.first_name}} {{request.request_by.last_name}}</h6>
+                <h6>Age:{{request.request_by.age}}</h6>
+                <p>Rating:4.9</p>
+            </div>
+            <a href="{% url 'approvereq' request.request_by.id %}"><button class="btn-large waves-light">View Full Profile</button></a>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+{% endblock %}

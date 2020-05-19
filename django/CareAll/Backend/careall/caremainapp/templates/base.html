@@ -22,14 +22,17 @@
     <div>  
       <ul class="right hide-on-med-and-down">
         {% if user.is_authenticated %}
-        <li><a href="#">Home</a></li>
+        <li><a href="{% url 'people' %}">Home</a></li>
+        {% if user.is_elder %}
+        <li><a href="{% url 'requests' %}">CheckRequests</a></li>
+        {% endif %}
         <li><a href="#">Welcome,{{user.get_username}}</a></li>
         <li><a href="#">AboutUs</a></li>
-        <li><a href="#">ContactUs</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+
         {% else %}
-        <li><a href="#">Home</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
         <li><a href="#">AboutUs</a></li>
-        <li><a href="#">ContactUs</a></li>
         {% endif %}
       </ul>
     </div>

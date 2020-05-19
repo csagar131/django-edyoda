@@ -36,20 +36,13 @@
             </p>
             <br/>
             {% endfor %}
-
-            <form method="POST">
-                {% csrf_token %}
-                <h5>Add you review</h5>
-                {{form.review}}
-                <button class="btn"><input type="submit" value="Submit" style="background-color:#26A69A;border: none;"></button>
-            </form>
             <br/>
             <br/>
-            {% if not user.is_elder %}
-            <a href="{% url 'reqdetail' usr.id user.username %}"><button class="btn">Request To Care</button></a>
-            {% endif %}    
+            <a href="{% url 'approvereqsuccess' usr.id %}"><button class="btn">Approve Request</button></a>
+            <a href=""><button class="btn">Cancel Request</button></a>
                 </div>
             </div>
         </div>
     </div>
+
     {% endblock %}

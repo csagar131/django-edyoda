@@ -15,6 +15,12 @@ class Rating(models.Model):
 
 class CareRequest(models.Model):
     request_by = models.ForeignKey(User,on_delete=models.CASCADE,related_name="req_by")
-    request_to = models.OneToOneField(User,on_delete=models.CASCADE)
+    request_to = models.ForeignKey(User,on_delete=models.CASCADE)
     req_status = models.BooleanField(blank = True)
     appr_status = models.BooleanField(blank = True)
+
+    def __str__(self):
+        return "{},{}".format(self.request_by.username,self.request_to.username)
+
+    class Meta:
+        unique_together = (('request_by', 'request_to'),)
