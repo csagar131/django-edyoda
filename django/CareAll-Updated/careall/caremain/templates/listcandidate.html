@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'caremain/css/listcandidate.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="main-body-content">
+    
+    {% for elder in elders %}
+
+   <div class="card-container"> 
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS73VEGYo2m82KVC39Ksyqucdyykyaqg1Ty2XzImvEwxqlWwljT&usqp=CAU" alt="John" width="370px" height="200px">
+        <h3>{{elder.get_first_name}} {{elder.get_last_name}}</h3>
+        <p class="title">Age : {{elder.age}}</p>
+        <p>Rating:4.5</p>
+        <a href="{% url 'candidatedetail' elder.id %}"><p><button>View Profile</button></p></a>
+      </div>
+    </div>
+    
+    <hr> 
+    {% endfor %}
+
+</div>
+
+{% endblock %}

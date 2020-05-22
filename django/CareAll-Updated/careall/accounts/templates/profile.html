@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="main-content">
+    <div class="profile-card">
+      <div class="upper-section">
+          <div class="image-section">
+              <div id="image-wrapper">
+                  <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS73VEGYo2m82KVC39Ksyqucdyykyaqg1Ty2XzImvEwxqlWwljT&usqp=CAU" width="150px" height="150px">
+              </div>
+              <h4>{{user.get_first_name}} {{user.get_last_name}}</h4>
+          </div>
+          <a><button id="btn-edit" class="waves-light">Edit Profile</button></a>
+      </div>
+      <div class="detail-section">
+          <p>Age:22</p>
+          <p>Gender:Male</p>
+          <p>Address:Silicon valley,USA</p>
+          <p>Email:sgr@gmail.com</p>
+          <p>Phone:8239245754</p>
+      </div>
+      <div class="bottom-section">
+          <h4>Reviews and Ratings</h4>
+            <div id="reviews">  
+              <h6>Suraj chouhan</h6>
+              <p>
+                  hey this is suraj chouhan and you are the amazing person i have ever meet in my entire career koodos to you.
+              </p>
+            </div>
+      </div>
+
+    </div>
+</div>
+
+{% endblock %}
