@@ -2,35 +2,53 @@
 {% load static %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'caremain/css/details.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
 
 {% block content %}
 
-<div class="giant-card">
-    <div class=giant-card-item>
-        <div class=details-section>
-            <div id="card-image">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS73VEGYo2m82KVC39Ksyqucdyykyaqg1Ty2XzImvEwxqlWwljT&usqp=CAU" alt="aiimage"  width="120px" height="120px"/>
-            </div>    
-            <div class="card-discription-heading">
-                    <h6>Name:{{usr.get_first_name}} {{usr.get_last_name}}</h6>
-                    <h6>Age: {{usr.age}}</h6>
-                    <h6>Gender : {{usr.gender}}</h6>
-                    <h6>Email:{{usr.email}}</h6>
-                    <h6>Address: {{usr.address}}</h6>
-                    <h6>Phone:{{usr.Phone}}</h6>
-                    <h6>Rating:4.5</h6>
+<div class="main-content">
+    <div class="profile-card">
+      <div class="upper-section">
+          <div class="image-section">
+              <div id="image-wrapper">
+                  {% if usr.image.url %}
+                    <img src ="{{usr.image.url}}" width="150px" height="150px">
+                  {% else %}
+                    <img src ="{% static 'images/nopic.png' %}" width="150px" height="150px">
+                  {% endif %}
+                </div>
+          </div>
+          <h4 style="color: white;">{{usr.get_first_name}} {{usr.get_last_name}}</h4>
+      </div>
+      <div class="detail-section">
+          <p>Age : {{usr.age}}</p>
+          <p>Gender : {{usr.gender}}</p>
+          <p>Address : {{usr.address}}</p>
+          <p>Email : {{usr.email}}</p>
+          <p>Phone : {{usr.contact}}</p>
+      </div>
+      <div class="bottom-section">
+          <h4>Reviews and Ratings</h4>
+            <div id="reviews">  
+              <h6>Suraj chouhan</h6>
+              <p>
+                  hey this is suraj chouhan and you are the amazing person i have ever meet in my entire career koodos to you.
+              </p>
             </div>
-        </div>
-        <div class="request-btn-section">
+      </div>
+
+    </div>
+</div>
+        <div class="bottom-section">
             {% if careseeker.care_seeker_status %}
                 <a class="waves-effect waves-light btn-small">Request Care</a>
             {% else %}
-                <p>This Person is not available to be cared</p>
+                <p>This Person is not available to be cared right now</p>
                 <a class="waves-effect waves-light btn-small">Go Back</a>
             {% endif %}
+                <a href="{% url 'index' %}" class="waves-effect waves-light btn-small">Go to Home</a>
         </div>
     </div>
 </div>

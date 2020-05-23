@@ -20,7 +20,7 @@
 <ul id="dropdown1" class="dropdown-content">
   {% if user.is_authenticated %}
   <li><a href="#!">Dashboard</a></li>
-  <li><a href="{% url 'profile' user.id %}">Profile</a></li>
+  <li><a href="{% url 'profile' user.slug %}">Profile</a></li>
   <li class="divider"></li>
   <li><a href="{% url 'logout' %}">Logout</a></li>
   {% endif %}
@@ -31,8 +31,10 @@
       <div class="nav-wrapper container"><a id="logo-container" href="" class="brand-logo">CareAll</a>
     </div>
     <ul class="right hide-on-med-and-down">
-      <li><a href="">Home</a></li>
-      <li><a href=""></a></li>
+      <li><a href="{% url 'index' %}">Home</a></li>
+      {% ifequal user.is_elder False %}
+      <li><a href="{% url 'listelders' %}">CareSeekers</a></li>
+      {% endifequal %}
       <!-- Dropdown Trigger -->
       {% if user.is_authenticated %}
         <li><a class="dropdown-trigger" href="" data-target="dropdown1">Welcome,{{user.get_first_name}}<i class="material-icons right">arrow_drop_down</i></a></li>

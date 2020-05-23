@@ -1,18 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.text import slugify
 
 
 class User(AbstractUser):
     gender_choice = [
         ('M','Male'),('F','Female'),
     ]
-
+    age = models.CharField(max_length = 2)
     email = models.EmailField(unique = True)
     contact = models.CharField(max_length = 10,blank=True)
-    gender = models.CharField(choices = gender_choice,max_length = 1)
+    gender = models.CharField(choices = gender_choice,max_length = 10)
     address = models.CharField(max_length = 255,blank = True)
     image = models.ImageField(upload_to = 'profile/',blank = True)
     is_elder = models.BooleanField(default = False)
+    slug = models.SlugField(blank = True)
+
+
+    def save(self,*args,**kwargs):
+        self.slug = slugify(self.get_first_name()+self.get_last_name())
+        return super().save(*args,**kwargs)
 
 
     def get_first_name(self):

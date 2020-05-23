@@ -13,18 +13,22 @@
       <div class="upper-section">
           <div class="image-section">
               <div id="image-wrapper">
-                  <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS73VEGYo2m82KVC39Ksyqucdyykyaqg1Ty2XzImvEwxqlWwljT&usqp=CAU" width="150px" height="150px">
-              </div>
+                  {% if user.image.url %}
+                    <img src ="{{user.image.url}}" width="150px" height="150px">
+                  {% else %}
+                    <img src ="{% static 'images/nopic.png' %}" width="150px" height="150px">
+                  {% endif %}
+                </div>
               <h4>{{user.get_first_name}} {{user.get_last_name}}</h4>
           </div>
-          <a><button id="btn-edit" class="waves-light">Edit Profile</button></a>
+          <a href="{% url 'editprofile' user.slug %}"><button id="btn-edit" class="waves-light">Edit Profile</button></a>
       </div>
       <div class="detail-section">
-          <p>Age:22</p>
-          <p>Gender:Male</p>
-          <p>Address:Silicon valley,USA</p>
-          <p>Email:sgr@gmail.com</p>
-          <p>Phone:8239245754</p>
+          <p>Age : {{user.age}}</p>
+          <p>Gender : {{user.gender}}</p>
+          <p>Address : {{user.address}}</p>
+          <p>Email : {{user.email}}</p>
+          <p>Phone : {{user.contact}}</p>
       </div>
       <div class="bottom-section">
           <h4>Reviews and Ratings</h4>
