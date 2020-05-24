@@ -42,13 +42,18 @@
     </div>
 </div>
         <div class="bottom-section">
-            {% if careseeker.care_seeker_status %}
-                <a class="waves-effect waves-light btn-small">Request Care</a>
-            {% else %}
-                <p>This Person is not available to be cared right now</p>
-                <a class="waves-effect waves-light btn-small">Go Back</a>
-            {% endif %}
-                <a href="{% url 'index' %}" class="waves-effect waves-light btn-small">Go to Home</a>
+          {% ifequal req_status 'pending' %}
+            <button class="waves-effect waves-light btn-small" disabled>Request Pending</button>
+            <a class="waves-effect waves-light btn-small">Go Back</a>
+          {% else %}
+                {% if careseeker.care_seeker_status %}
+                    <a href="{% url 'sentrequest' usr.slug  %}" class="waves-effect waves-light btn-small">Send Request</a>
+                {% else %}
+                    <p>This Person is not available to be cared right now</p>
+                    <a class="waves-effect waves-light btn-small">Go Back</a>
+                {% endif %}
+                    <a href="{% url 'index' %}" class="waves-effect waves-light btn-small">Go to Home</a>
+          {% endifequal %}
         </div>
     </div>
 </div>

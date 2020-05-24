@@ -13,7 +13,7 @@ class CareRequests(models.Model):
     status = models.CharField(max_length = 50,choices = statuses)
 
     def __str__(self):
-        return "{}-{}".format(self.categiver.username,self.careseeker.username)
+        return "{}-{}".format(self.caregiver.username,self.careseeker.username)
 
     def get_request_status(self):
         return self.status
