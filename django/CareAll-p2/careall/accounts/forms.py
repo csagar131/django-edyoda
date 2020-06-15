@@ -30,3 +30,7 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('age','gender','contact','address','image')
+
+
+class AddFundForm(forms.Form):
+    fund = forms.IntegerField()

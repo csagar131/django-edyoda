@@ -1,6 +1,6 @@
 from django.urls import path,include
 from django.contrib.auth.views import LoginView,LogoutView
-from accounts.views import ElderUserCreate,YoungerUserCreate,DisplayProfileView,EditProfileView,UserDashboardView
+from accounts.views import ElderUserCreate,YoungerUserCreate,DisplayProfileView,EditProfileView,UserDashboardView,AddFundView
 from caremain.views import AcceptRejectRequestView
 
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('profile/update/<slug:slug>',EditProfileView.as_view(),name = 'editprofile'),
     path('dashboard',UserDashboardView.as_view(),name = 'dashboard'),
     path('dashboard/<str:str>/<slug:slug>',AcceptRejectRequestView.as_view(),name = 'ar_request'),
+    path('<slug:slug>/addfund',AddFundView.as_view(),name = 'addfund'),
 ]

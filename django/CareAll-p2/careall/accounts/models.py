@@ -39,7 +39,7 @@ class CareSeeker(models.Model):
     def __str__(self):
         return self.user.username
     
-    def allocate_funds(self,amount):
+    def allocate_fund(self,amount):
         self.funds+=amount
 
     def get_funds(self):

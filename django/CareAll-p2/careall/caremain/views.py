@@ -35,10 +35,11 @@ class CandidateDetailView(DetailView):
 
 class SendCareRequestView(View):
     def get(self,request,slug,*args,**kwargs):
-        form = ActivateRequestForm
         caregiver = CareGiver.objects.get(user = request.user)
-        if caregiver.get_active_care_count() < 4 :
-            careseeker = User.objects.get(slug = slug)
+        careseeker = User.objects.get(slug = slug)
+        if CareRequests.objects.filter(careseeker = careseeker,caregiver = request.user,status = 'rejected').exists():
+            return HttpResponse("Your previous request has been rejected you can't send another request")
+        if caregiver.get_active_care_count() < 4:
             carerequest = CareRequests.objects.create(caregiver = request.user,careseeker = careseeker,status = 'pending')
             carerequest.save()
         else:
@@ -46,8 +47,7 @@ class SendCareRequestView(View):
         if CareRequests.objects.filter(caregiver = request.user,careseeker = careseeker,status = 'pending').exists():
             current_req_status = 'pending'
         careseekeruser = CareSeeker.objects.get(user = careseeker)
-        context['form'] = form
-        return render(request,'detailuser.html',context={'usr':careseeker,'careseeker': careseekeruser,'req_status':current_req_status,'form':form})
+        return render(request,'detailuser.html',context={'usr':careseeker,'careseeker': careseekeruser,'req_status':current_req_status})
 
     
 
