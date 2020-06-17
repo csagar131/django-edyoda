@@ -56,7 +56,7 @@
               </div>
               <h6 style="color: white;">Name:{{approved.caregiver.get_first_name}} {{approved.caregiver.get_last_name}}</h6>
                <!-- Modal Trigger -->
-             <a class="waves-effect waves-light btn" href="">Start Service</a>
+             <a class="waves-effect waves-light btn" href="{% url 'startservice' approved.caregiver.slug %}">Start Service</a>
           </div>
         {% endfor %} 
         
@@ -65,7 +65,7 @@
     <br/>
     <br/>
     <div class="request-list">
-        <h5 style="text-align: center;"> Active Request </h5>
+        <h5 style="text-align: center;"> Active Service </h5>
         {% for actived in active %}
         {% ifnotequal actived.status 'active' %}
             <p> You have not activated a single request yet</p>
@@ -75,7 +75,6 @@
                 <img src ="{{actived.caregiver.image.url}}" width="150px" height="150px">
             </div>
             <h6 style="color: white;">Name:{{actived.caregiver.get_first_name}} {{actived.caregiver.get_last_name}}</h6>
-            <a><button class="waves-effect waves-light btn-small">Start Service</button></a>
         </div>
         {% endfor %}
     </div>

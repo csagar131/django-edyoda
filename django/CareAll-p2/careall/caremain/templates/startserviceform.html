@@ -1,0 +1,7 @@
+
+    <p>Charges/Month : {{caregiver.rate_per_month}} </p>
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Submit">
+    </form>

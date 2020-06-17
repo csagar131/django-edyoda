@@ -21,7 +21,6 @@ class User(AbstractUser):
         self.slug = slugify(self.get_first_name()+self.get_last_name())
         return super().save(*args,**kwargs)
 
-
     def get_first_name(self):
         return self.first_name
 
@@ -62,6 +61,7 @@ class CareGiver(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     earning = models.IntegerField()
     active_care_count = models.IntegerField()
+    rate_per_month = models.IntegerField()
 
     def __str__(self):
         return self.user.username
@@ -82,6 +82,8 @@ class CareGiver(models.Model):
     def get_active_care_count(self):
         return self.active_care_count
 
+    def get_caregiver_obj(self):
+        return self.user
 
 
 

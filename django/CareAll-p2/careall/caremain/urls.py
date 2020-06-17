@@ -7,5 +7,5 @@ urlpatterns = [
    path('candidates',ListElders.as_view(),name = 'listelders'),
    path('candidates/<slug:slug>',CandidateDetailView.as_view(),name = 'candidatedetail'),
    path('request/<slug:slug>',SendCareRequestView.as_view(),name = 'sentrequest'),
-   path('request/startservice',StartServiceView.as_view(),name = 'startservice'),
+   path('request/startservice/<slug:slug>',StartServiceView.as_view(),name = 'startservice'),
 ]
