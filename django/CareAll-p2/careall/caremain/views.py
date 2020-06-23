@@ -8,7 +8,7 @@ from caremain.models import CareRequests
 from caremain.forms import StartServiceForm
 from accounts.views import AddFundView
 from accounts.forms import AddFundForm
-from datetime import datetime
+from datetime import datetime,timedelta
 
 class IndexView(View):
     def get(self,request,*args,**kwargs):
@@ -44,14 +44,16 @@ class SendCareRequestView(View):
         if CareRequests.objects.filter(careseeker = careseeker,caregiver = request.user,status = 'rejected').exists():
             return HttpResponse("Your previous request has been rejected you can't send another request")
         if caregiver.get_active_care_count() < 4:
-            carerequest = CareRequests.objects.create(caregiver = request.user,careseeker = careseeker,status = 'pending')
+            carerequest = CareRequests.objects.create(caregiver = request.user,\
+            careseeker = careseeker,status = 'pending')
             carerequest.save()
         else:
             return HttpResponse("you have exceeded the care taking limit")
         if CareRequests.objects.filter(caregiver = request.user,careseeker = careseeker,status = 'pending').exists():
             current_req_status = 'pending'
         careseekeruser = CareSeeker.objects.get(user = careseeker)
-        return render(request,'detailuser.html',context={'usr':careseeker,'careseeker': careseekeruser,'req_status':current_req_status})
+        return render(request,'detailuser.html',\
+        context={'usr':careseeker,'careseeker': careseekeruser,'req_status':current_req_status})
 
 
 class AcceptRejectRequestView(View):  #this wiil be the view where several conditions will be checked
@@ -73,7 +75,8 @@ class AcceptRejectRequestView(View):  #this wiil be the view where several condi
         active_request = CareRequests.objects.filter(careseeker = request.user).filter(status ='active')
         approved_request = CareRequests.objects.filter(careseeker = request.user).filter(status ='approved')
         req_statuses = CareRequests.objects.filter(careseeker = request.user).filter(status ='pending')
-        return render(request,'dashboard.html',context={'req_statuses':req_statuses,'active':active_request,'approve':approved_request})
+        return render(request,'dashboard.html',context={'req_statuses':req_statuses,\
+        'active':active_request,'approve':approved_request})
 
 
 class StartServiceView(View):
@@ -97,7 +100,8 @@ class StartServiceView(View):
             return redirect(reverse('addfund',kwargs = {'slug':slug}))
         else:
             care_request = CareRequests.objects.filter(caregiver = usr,careseeker = request.user) 
-            care_request.update(start_service = datetime.now(),status = 'active')
+            care_request.update(start_service = datetime.now(),status = 'active', \
+            end_service = datetime.now() +timedelta(days=form.cleaned_data['days']))
             return redirect('dashboard')
 
 

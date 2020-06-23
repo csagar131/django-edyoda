@@ -4,12 +4,11 @@
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% endblock %}
 
-
 {% block content %}
 
 <div class="dashboard-main">
     <div class="request-list">
-        <h5 style="text-align: center;"> Pending Requests </h5>
+        <h5 style="text-align: center;"> Requests </h5>
         {% ifequal user.is_elder False %}
             {%  for req_status in req_statuses %}
                 <div class="request-item">
@@ -40,7 +39,7 @@
     </div>
 
 
-
+    {% ifequal user.is_elder True %}
 
     <br/>
     <br/>
@@ -75,8 +74,12 @@
                 <img src ="{{actived.caregiver.image.url}}" width="150px" height="150px">
             </div>
             <h6 style="color: white;">Name:{{actived.caregiver.get_first_name}} {{actived.caregiver.get_last_name}}</h6>
+            <a class="waves-effect waves-light btn" href="">End Service</a>    
         </div>
         {% endfor %}
     </div>
   </div>
+  {% endifequal %}
+  <br/>
+  <br/>
 {% endblock %}

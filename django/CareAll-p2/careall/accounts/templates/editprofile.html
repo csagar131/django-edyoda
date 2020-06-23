@@ -1,9 +1,24 @@
 
 
-<form method="POST" enctype="multipart/form-data">
 
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="update">
+  </form>
+
+{% endblock %}
+
+<!-- <form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   {{form.as_p}}
   <input type="submit" value="update">
-
-</form>
+</form> -->

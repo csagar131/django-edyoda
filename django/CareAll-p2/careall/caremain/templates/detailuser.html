@@ -48,7 +48,7 @@
             <a href="{% url 'listelders' %}" class="waves-effect waves-light btn-small">Go Back</a>
           {% else %}
                 {% if careseeker.care_seeker_status %}
-                    <a href="{% url 'sentrequest' usr.slug  %}" class="waves-effect waves-light btn-small">Send Request</a>
+                    <a onclick="M.toast({html: 'Request Sent'})" href="{% url 'sentrequest' usr.slug  %}" class="waves-effect waves-light btn-small">Send Request</a>
                     <a href="{% url 'listelders' %}" class="waves-effect waves-light btn-small">Go Back</a>
                 {% else %}
                     <p>This Person is not available to be cared right now</p>
