@@ -65,6 +65,8 @@ class AcceptRejectRequestView(View):  #this wiil be the view where several condi
         if str == 'approve':
             if CareRequests.objects.filter(careseeker = request.user,status = 'approved'):
                 return HttpResponse("You have already approved one Request")
+            if CareRequests.objects.filter(careseeker = request.user,status = 'active'):
+                return HttpResponse("You have already one member there to be cared")
             care_seeker.set_is_available_false()
             care_giver.increment_care_count()
             care_giver.save()

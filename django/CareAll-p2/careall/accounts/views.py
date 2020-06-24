@@ -55,7 +55,8 @@ class UserDashboardView(View):
 class AddFundView(View):
     def get(self,request,*args,**kwargs):
         form = AddFundForm()
-        return render(request,'addfund.html',context={'form':form})
+        curr_amount = CareSeeker.objects.get(user = request.user).get_funds()
+        return render(request,'addfund.html',context={'form':form,'amount':curr_amount})
 
     def post(self,request,*args,**kwargs):
         form = AddFundForm(request.POST)
@@ -64,33 +65,4 @@ class AddFundView(View):
         careseeker.allocate_fund(form.cleaned_data['fund'])  #calling the allocate_fund method of careseeker object
         careseeker.save()
         return render(request,'profile.html',context={'careseeker':careseeker})
-
-# class AcceptRejectRequestView(View):  #this wiil be the view where several conditions will be checked
-#     def get(self,request,str,slug,*args,**kwargs):
-#         care_seeker = CareSeeker.objects.get(user = request.user)
-#         giver = User.objects.get(slug = slug)
-#         care_giver = CareGiver.objects.get(user = giver)
-#         care_request = CareRequests.objects.filter(careseeker = request.user,caregiver = giver)
-#         if str == 'approve':
-#             if CareRequests.objects.filter(careseeker = request.user,status = 'approved'):
-#                 return HttpResponse("You have already approved one Request")
-#             care_seeker.set_is_available_false()
-#             care_giver.increment_care_count()
-#             care_giver.save()
-#             care_request.update(status = 'approved')
-#             care_seeker.save()
-#         if str == 'reject':
-#             care_request.update(status = 'rejected')
-#         active_request = CareRequests.objects.filter(careseeker = request.user).filter(status ='active')
-#         approved_request = CareRequests.objects.filter(careseeker = request.user).filter(status ='approved')
-#         req_statuses = CareRequests.objects.filter(careseeker = request.user).filter(status ='pending')
-#         return render(request,'dashboard.html',context={'req_statuses':req_statuses,'active':active_request,'approve':approved_request})
-
-
-
-
-
-
-
-
 

@@ -20,3 +20,4 @@ class CareRequests(models.Model):
 
     def get_request_status(self):
         return self.status
+
