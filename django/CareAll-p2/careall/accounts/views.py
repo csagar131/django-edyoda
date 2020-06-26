@@ -62,7 +62,9 @@ class AddFundView(View):
         form = AddFundForm(request.POST)
         form.is_valid()
         careseeker =  CareSeeker.objects.get(user = request.user)
-        careseeker.allocate_fund(form.cleaned_data['fund'])  #calling the allocate_fund method of careseeker object
+        amount = form.cleaned_data['fund']
+        careseeker.allocate_fund(amount)  #calling the allocate_fund method of careseeker object
         careseeker.save()
         return render(request,'profile.html',context={'careseeker':careseeker})
+        
 

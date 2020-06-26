@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import User
-
+from datetime import datetime
 
 class CareRequests(models.Model):
 
@@ -20,4 +20,14 @@ class CareRequests(models.Model):
 
     def get_request_status(self):
         return self.status
+
+    def set_request_status(self,state):
+        self.status = state
+
+
+class Transaction(models.Model):
+    caregiver = models.ForeignKey(User,models.CASCADE,related_name = 'tgiver')
+    careseeker = models.ForeignKey(User,models.CASCADE,related_name = 'tseeker')
+    tamount = models.IntegerField()
+    timestamp = models.DateTimeField(default = datetime.now())
 

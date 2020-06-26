@@ -61,19 +61,21 @@ class AcceptRejectRequestView(View):  #this wiil be the view where several condi
         care_seeker = CareSeeker.objects.get(user = request.user)
         giver = User.objects.get(slug = slug)
         care_giver = CareGiver.objects.get(user = giver)
-        care_request = CareRequests.objects.filter(careseeker = request.user,caregiver = giver)
+        care_request = CareRequests.objects.get(careseeker = request.user,caregiver = giver)
         if str == 'approve':
             if CareRequests.objects.filter(careseeker = request.user,status = 'approved'):
                 return HttpResponse("You have already approved one Request")
             if CareRequests.objects.filter(careseeker = request.user,status = 'active'):
                 return HttpResponse("You have already one member there to be cared")
             care_seeker.set_is_available_false()
+            care_seeker.save()
             care_giver.increment_care_count()
             care_giver.save()
-            care_request.update(status = 'approved')
-            care_seeker.save()
+            care_request.status = 'approved'
+            care_request.save()
         if str == 'reject':
-            care_request.update(status = 'rejected')
+            care_request.status = 'rejected'
+            care_request.save()
         active_request = CareRequests.objects.filter(careseeker = request.user).filter(status ='active')
         approved_request = CareRequests.objects.filter(careseeker = request.user).filter(status ='approved')
         req_statuses = CareRequests.objects.filter(careseeker = request.user).filter(status ='pending')
@@ -105,6 +107,42 @@ class StartServiceView(View):
             care_request.update(start_service = datetime.now(),status = 'active', \
             end_service = datetime.now() +timedelta(days=form.cleaned_data['days']))
             return redirect('dashboard')
+
+
+class EndServiceView(View):
+    def get(self,request,slug,*args,**kwargs):
+        caregiver_user_obj = User.objects.get(slug = slug)
+        caregiver = CareGiver.objects.get(user = caregiver_user_obj)
+        careseeker_user_obj = User.objects.get(id = request.user.id)
+        careseeker = CareSeeker.objects.get(user = request.user)
+        carerequest = CareRequests.objects.get(careseeker =careseeker_user_obj,caregiver = caregiver_user_obj)
+        careseeker.set_is_available_true()
+        careseeker.save()
+        caregiver.decrement_care_count()
+        caregiver.save()
+        carerequest.set_request_status('completed')
+        carerequest.save()
+        return redirect('dashboard')
+
+    def calculate_transaction_amount(self,caregiver_user_obj,care_giver,careseeker_user_obj,careseeker,carerequest):
+        charges_per_month = care_giver.rate_per_month
+        chagers_per_day = charges_per_month/30
+        start_date = carerequest.start_date
+        end_date = datetime.now()
+        days_till_now = (end_date - start_date).days
+        bill_amount = days_till_now * chagers_per_day
+        return bill_amount
+
+
+
+
+
+
+
+
+
+
+
 
 
 
