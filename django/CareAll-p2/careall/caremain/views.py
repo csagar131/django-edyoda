@@ -4,7 +4,7 @@ from django.views import View
 from accounts.models import CareGiver,User,CareSeeker
 from django.views.generic import DetailView,ListView,UpdateView
 from django.http import HttpResponse
-from caremain.models import CareRequests
+from caremain.models import CareRequests,Transaction
 from caremain.forms import StartServiceForm
 from accounts.views import AddFundView
 from accounts.forms import AddFundForm
@@ -116,19 +116,20 @@ class EndServiceView(View):
         careseeker_user_obj = User.objects.get(id = request.user.id)
         careseeker = CareSeeker.objects.get(user = request.user)
         carerequest = CareRequests.objects.get(careseeker =careseeker_user_obj,caregiver = caregiver_user_obj)
-        careseeker.set_is_available_true()
-        careseeker.save()
-        caregiver.decrement_care_count()
-        caregiver.save()
+        bill_amount = self.calculate_transaction_amount(caregiver_user_obj,caregiver,careseeker_user_obj,careseeker,carerequest)
+        transaction = Transaction.objects.create(careseeker=careseeker_user_obj,caregiver = caregiver_user_obj,tamount = bill_amount)
+        transaction.save()
         carerequest.set_request_status('completed')
         carerequest.save()
         return redirect('dashboard')
 
-    def calculate_transaction_amount(self,caregiver_user_obj,care_giver,careseeker_user_obj,careseeker,carerequest):
-        charges_per_month = care_giver.rate_per_month
+    def calculate_transaction_amount(self,caregiver_user_obj,caregiver,careseeker_user_obj,careseeker,carerequest):
+        charges_per_month = caregiver.rate_per_month
         chagers_per_day = charges_per_month/30
-        start_date = carerequest.start_date
-        end_date = datetime.now()
+        start_date = carerequest.start_service.replace(tzinfo=None)
+        end_date = datetime.now().replace(tzinfo=None)
+        print(start_date)
+        print(end_date)
         days_till_now = (end_date - start_date).days
         bill_amount = days_till_now * chagers_per_day
         return bill_amount

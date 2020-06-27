@@ -41,6 +41,9 @@ class CareSeeker(models.Model):
     def allocate_fund(self,amount):
         self.funds+=amount
 
+    def deduct_fund(self,amount):
+        self.funds-=amount
+
     def get_funds(self):
         return self.funds
 
@@ -66,7 +69,7 @@ class CareGiver(models.Model):
     def __str__(self):
         return self.user.username
 
-    def set_earning(self,amount):
+    def add_earning(self,amount):
         self.earning+=amount
 
     def get_earning(self):
